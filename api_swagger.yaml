@@ -55,7 +55,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: "#/definitions/Record"
+            $ref: "#/definitions/Client"
       responses:
         200:
           description: Successful response
@@ -115,7 +115,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: "#/definitions/Record"
+            $ref: "#/definitions/Client"
       responses:
         200:
           description: Successful response
@@ -127,6 +127,173 @@ paths:
         Only permitted by the consultant or the client itself
       parameters:
         - name: clientId
+          in: path
+          type: integer
+          required: true
+          description: The ID of the client
+        - name: x-key
+          in: header
+          description: The encruption key
+          required: true
+          type: string
+        - name: x-key-kype
+          in: header
+          description: The encruption key type
+          required: true
+          type: string
+          enum: ["CONSULTANT", "CLIENT"]
+        - name: client
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/Client"
+      responses:
+        200:
+          description: Successful response
+        400:
+          description: Something went wrong
+  /clients/{clientId}/records:
+    get:
+      description: |
+        Retrieves an array of all 'Record' entities owned by the client indicated with the clientId.
+        Only permitted by the consultant
+      parameters:
+        - name: clientId
+          in: path
+          type: integer
+          required: true
+          description: The ID of the client
+        - name: x-key
+          in: header
+          description: The encruption key
+          required: true
+          type: string
+        - name: x-key-kype
+          in: header
+          description: The encruption key type
+          required: true
+          type: string
+          enum: ["CONSULTANT", "CLIENT"]
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Record"
+        400:
+          description: Something went wrong
+    post:
+      description: |
+        Creates a new 'Record' enitity for thr thw owning client
+      parameters:
+        - name: clientId
+          in: path
+          type: integer
+          required: true
+          description: The ID of the client
+        - name: x-key
+          in: header
+          description: The encruption key
+          required: true
+          type: string
+        - name: x-key-kype
+          in: header
+          description: The encruption key type
+          required: true
+          type: string
+          enum: ["CONSULTANT", "CLIENT"]
+        - name: client
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/Record"
+      responses:
+        200:
+          description: Successful response
+        400:
+          description: Something went wrong
+  /clients/{clientId}/records/{recordId}:
+    get:
+      description: |
+        Retrieves a  'Record' entity owned by the client.
+        Only permitted by the consultant or the client itself
+      parameters:
+        - name: clientId
+          in: path
+          type: integer
+          required: true
+          description: The ID of the client
+        - name: recordId
+          in: path
+          type: integer
+          required: true
+          description: The ID of the client
+        - name: x-key
+          in: header
+          description: The encruption key
+          required: true
+          type: string
+        - name: x-key-kype
+          in: header
+          description: The encruption key type
+          required: true
+          type: string
+          enum: ["CONSULTANT", "CLIENT"]
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Record"
+        400:
+          description: Something went wrong
+    put:
+      description: |
+        Updates a  'Record' entity owned by the client.
+        Only permitted by the consultant or the client itself
+      parameters:
+        - name: clientId
+          in: path
+          type: integer
+          required: true
+          description: The ID of the client
+        - name: recordId
+          in: path
+          type: integer
+          required: true
+          description: The ID of the client
+        - name: x-key
+          in: header
+          description: The encruption key
+          required: true
+          type: string
+        - name: x-key-kype
+          in: header
+          description: The encruption key type
+          required: true
+          type: string
+          enum: ["CONSULTANT", "CLIENT"]
+        - name: client
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/Record"
+      responses:
+        200:
+          description: Successful response
+        400:
+          description: Something went wrong
+    delete:
+      description: |
+        Deletes a  'Record' entity owned by the client.
+        Only permitted by the consultant or the client itself
+      parameters:
+        - name: clientId
+          in: path
+          type: integer
+          required: true
+          description: The ID of the client
+        - name: recordId
           in: path
           type: integer
           required: true
