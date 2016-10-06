@@ -1,6 +1,7 @@
 package com.tudelft.sdm.controller;
 
 import com.tudelft.sdm.persistance.Client;
+import com.tudelft.sdm.persistance.KeyTypeEnumeration;
 import com.tudelft.sdm.persistance.Record;
 import com.tudelft.sdm.service.ClientService;
 import com.tudelft.sdm.service.RecordService;
@@ -33,99 +34,99 @@ public class ClientController {
 
     @ResponseBody
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Client> getClients() {
-        return clientService.getAll();
+    public List<Client> getClients(@RequestHeader(name = "x-key") String key, @RequestHeader(name = "x-key-type") KeyTypeEnumeration keyType) {
+        return clientService.getAll(key, keyType);
     }
 
     @ResponseBody
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createClient(@RequestBody Client client) {
-        clientService.create(client);
+    public void createClient(@RequestBody Client client, @RequestHeader(name = "x-key") String key, @RequestHeader(name = "x-key-type") KeyTypeEnumeration keyType) {
+        clientService.create(client, key, keyType);
     }
 
     @ResponseBody
     @RequestMapping(value = "/{clientId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Client getClient(@PathVariable(name = "clientId") int clientId) {
-        return clientService.find(clientId);
+    public Client getClient(@PathVariable(name = "clientId") int clientId, @RequestHeader(name = "x-key") String key, @RequestHeader(name = "x-key-type") KeyTypeEnumeration keyType) {
+        return clientService.find(clientId, key, keyType);
     }
 
     @ResponseBody
     @RequestMapping(value = "/{clientId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateClient(@PathVariable(name = "clientId") int clientId, @RequestBody Client client) {
-        Client dbClient = clientService.find(clientId);
+    public void updateClient(@PathVariable(name = "clientId") int clientId, @RequestBody Client client, @RequestHeader(name = "x-key") String key, @RequestHeader(name = "x-key-type") KeyTypeEnumeration keyType) {
+        Client dbClient = clientService.find(clientId, key, keyType);
         if (dbClient == null) {
             throw new ResourceAccessException("Client not found");
         }
         dbClient.merge(client);
-        clientService.update(dbClient);
+        clientService.update(dbClient, key, keyType);
     }
 
     @ResponseBody
     @RequestMapping(value = "/{clientId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteClient(@PathVariable(name = "clientId") int clientId) {
-        Client client = clientService.find(clientId);
+    public void deleteClient(@PathVariable(name = "clientId") int clientId, @RequestHeader(name = "x-key") String key, @RequestHeader(name = "x-key-type") KeyTypeEnumeration keyType) {
+        Client client = clientService.find(clientId, key, keyType);
         if (client == null) {
             throw new ResourceAccessException("Client not found");
         }
-        clientService.delete(client);
+        clientService.delete(client, key, keyType);
     }
 
     @ResponseBody
     @RequestMapping(value = "/{clientId}/records/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Record> getRecords(@PathVariable(name = "clientId") int clientId) {
-        Client client = clientService.find(clientId);
+    public List<Record> getRecords(@PathVariable(name = "clientId") int clientId, @RequestHeader(name = "x-key") String key, @RequestHeader(name = "x-key-type") KeyTypeEnumeration keyType) {
+        Client client = clientService.find(clientId, key, keyType);
         if (client == null) {
             throw new ResourceAccessException("Client not found");
         }
-        return recordService.getAll(client);
+        return recordService.getAll(client, key, keyType);
     }
 
     @ResponseBody
     @RequestMapping(value = "/{clientId}/records/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createRecord(@PathVariable(name = "clientId") int clientId, @RequestBody Record record) {
-        Client client = clientService.find(clientId);
+    public void createRecord(@PathVariable(name = "clientId") int clientId, @RequestBody Record record, @RequestHeader(name = "x-key") String key, @RequestHeader(name = "x-key-type") KeyTypeEnumeration keyType) {
+        Client client = clientService.find(clientId, key, keyType);
         if (client == null) {
             throw new ResourceAccessException("Client not found");
         }
-        recordService.create(record, client);
+        recordService.create(record, client, key, keyType);
     }
 
     @ResponseBody
     @RequestMapping(value = "/{clientId}/records/{recordId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Record getRecord(@PathVariable(name = "clientId") int clientId, @PathVariable(name = "recordId") int recordId) {
-        Client client = clientService.find(clientId);
+    public Record getRecord(@PathVariable(name = "clientId") int clientId, @PathVariable(name = "recordId") int recordId, @RequestHeader(name = "x-key") String key, @RequestHeader(name = "x-key-type") KeyTypeEnumeration keyType) {
+        Client client = clientService.find(clientId, key, keyType);
         if (client == null) {
             throw new ResourceAccessException("Client not found");
         }
-        return recordService.find(recordId, client);
+        return recordService.find(recordId, client, key, keyType);
     }
 
     @ResponseBody
     @RequestMapping(value = "/{clientId}/records/{recordId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateRecord(@PathVariable(name = "clientId") int clientId, @PathVariable(name = "recordId") int recordId, @RequestBody Record record) {
-        Client client = clientService.find(clientId);
+    public void updateRecord(@PathVariable(name = "clientId") int clientId, @PathVariable(name = "recordId") int recordId, @RequestBody Record record, @RequestHeader(name = "x-key") String key, @RequestHeader(name = "x-key-type") KeyTypeEnumeration keyType) {
+        Client client = clientService.find(clientId, key, keyType);
         if (client == null) {
             throw new ResourceAccessException("Client not found");
         }
-        Record dbRecord = recordService.find(recordId, client);
+        Record dbRecord = recordService.find(recordId, client, key, keyType);
         if (dbRecord == null) {
             throw new ResourceAccessException("Record not found");
         }
         dbRecord.merge(record);
-        recordService.update(dbRecord, client);
+        recordService.update(dbRecord, client, key, keyType);
     }
 
     @ResponseBody
     @RequestMapping(value = "/{clientId}/records/{recordId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteRecord(@PathVariable(name = "clientId") int clientId, @PathVariable(name = "recordId") int recordId) {
-        Client client = clientService.find(clientId);
+    public void deleteRecord(@PathVariable(name = "clientId") int clientId, @PathVariable(name = "recordId") int recordId, @RequestHeader(name = "x-key") String key, @RequestHeader(name = "x-key-type") KeyTypeEnumeration keyType) {
+        Client client = clientService.find(clientId, key, keyType);
         if (client == null) {
             throw new ResourceAccessException("Client not found");
         }
-        Record record = recordService.find(recordId, client);
+        Record record = recordService.find(recordId, client, key, keyType);
         if (record == null) {
             throw new ResourceAccessException("Record not found");
         }
-        recordService.delete(record, client);
+        recordService.delete(record, client, key, keyType);
     }
 }

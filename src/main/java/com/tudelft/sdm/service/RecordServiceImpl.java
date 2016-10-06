@@ -1,6 +1,7 @@
 package com.tudelft.sdm.service;
 
 import com.tudelft.sdm.persistance.Client;
+import com.tudelft.sdm.persistance.KeyTypeEnumeration;
 import com.tudelft.sdm.persistance.Record;
 import com.tudelft.sdm.persistance.dao.RecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,13 @@ public class RecordServiceImpl implements RecordService {
 
     @Override
     @Transactional
-    public Record find(int id, Client client) {
+    public Record find(int id, Client client, String key, KeyTypeEnumeration keyType) {
         return recordDao.findByIdAndClientId((long) id, client.getId());
     }
 
     @Override
     @Transactional
-    public void create(Record record, Client client) {
+    public void create(Record record, Client client, String key, KeyTypeEnumeration keyType) {
         record.setCreated_at(new Date());
         record.setUpdated_at(new Date());
         record.setClient(client);
@@ -37,7 +38,7 @@ public class RecordServiceImpl implements RecordService {
 
     @Override
     @Transactional
-    public void update(Record record, Client client) {
+    public void update(Record record, Client client, String key, KeyTypeEnumeration keyType) {
         Record dbRecord = recordDao.findByIdAndClientId(record.getId(), client.getId());
         dbRecord.merge(record);
         dbRecord.setUpdated_at(new Date());
@@ -46,14 +47,14 @@ public class RecordServiceImpl implements RecordService {
 
     @Override
     @Transactional
-    public void delete(Record record, Client client) {
+    public void delete(Record record, Client client, String key, KeyTypeEnumeration keyType) {
         Record dbRecord = recordDao.findByIdAndClientId(record.getId(), client.getId());
         recordDao.delete(dbRecord);
     }
 
     @Override
     @Transactional
-    public List<Record> getAll(Client client) {
+    public List<Record> getAll(Client client, String key, KeyTypeEnumeration keyType) {
         return recordDao.findByClientId(client.getId());
     }
 }
