@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt]{report}
+\documentclass{article}
 
 \usepackage{ucs}
 \usepackage[utf8]{inputenc}
@@ -10,13 +10,27 @@
 \usepackage{fontenc}
 \usepackage{graphicx}
 \usepackage[a4paper, margin=1in]{geometry}
+\usepackage{float}
+\usepackage{tipa}
+\usepackage{titlesec}
+\usepackage{courier}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{booktabs}
 
-\usepackage[dvips]{hyperref}
 
-\title{Secure Data Management:\\\large Searchable Encrypted Database}
-\author{Stijn van Schooten en de rest !}
-\date{\today}
+\titleformat{\section}
+{\normalfont\Large\bfseries}
+{\thesection\hskip 9pt\textpipe\hskip 9pt}
+{0pt}
+{}
+
+\title{~\\~\\~\\~\\ \Huge \textbf{Secure Data Management (192110940)} \\~\\~\huge Search in Encrypted Data}
+\author{Harm Griffioen (s1888986) \\ Hugo Bijmans (sXXXXXXX) \\ Madelon Hulsebos (sXXXXXXX) \\ Pieter van der Veeken (sXXXXXXX) \\ Stijn van Schooten (sXXXXXXX)}
 
 \begin{document}
-\maketitle
+	\maketitle
+	\pagenumbering{gobble}
+	\newpage
+	\pagenumbering{arabic}
 \end{document}
