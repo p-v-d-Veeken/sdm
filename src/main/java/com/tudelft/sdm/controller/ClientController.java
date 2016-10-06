@@ -61,6 +61,16 @@ public class ClientController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/{clientId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteClient(@PathVariable(name = "clientId") int clientId) {
+        Client client = clientService.find(clientId);
+        if (client == null) {
+            throw new ResourceAccessException("Client not found");
+        }
+        clientService.delete(client);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/{clientId}/records/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Record> getRecords(@PathVariable(name = "clientId") int clientId) {
         Client client = clientService.find(clientId);
@@ -92,7 +102,7 @@ public class ClientController {
 
     @ResponseBody
     @RequestMapping(value = "/{clientId}/records/{recordId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void getRecord(@PathVariable(name = "clientId") int clientId, @PathVariable(name = "recordId") int recordId, @RequestBody Record record) {
+    public void updateRecord(@PathVariable(name = "clientId") int clientId, @PathVariable(name = "recordId") int recordId, @RequestBody Record record) {
         Client client = clientService.find(clientId);
         if (client == null) {
             throw new ResourceAccessException("Client not found");
@@ -103,5 +113,19 @@ public class ClientController {
         }
         dbRecord.merge(record);
         recordService.update(dbRecord, client);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/{clientId}/records/{recordId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteRecord(@PathVariable(name = "clientId") int clientId, @PathVariable(name = "recordId") int recordId) {
+        Client client = clientService.find(clientId);
+        if (client == null) {
+            throw new ResourceAccessException("Client not found");
+        }
+        Record record = recordService.find(recordId, client);
+        if (record == null) {
+            throw new ResourceAccessException("Record not found");
+        }
+        recordService.delete(record, client);
     }
 }
