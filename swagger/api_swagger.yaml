@@ -23,10 +23,9 @@ paths:
           type: string
         - name: x-key-kype
           in: header
-          description: The encruption key type
+          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
           required: true
           type: string
-          enum: ["CONSULTANT", "CLIENT"]
       responses:
         200:
           description: Successful response
@@ -47,10 +46,9 @@ paths:
           type: string
         - name: x-key-kype
           in: header
-          description: The encruption key type
+          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
           required: true
           type: string
-          enum: ["CONSULTANT", "CLIENT"]
         - name: client
           in: body
           required: true
@@ -79,10 +77,9 @@ paths:
           type: string
         - name: x-key-kype
           in: header
-          description: The encruption key type
+          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
           required: true
           type: string
-          enum: ["CONSULTANT", "CLIENT"]
       responses:
         200:
           description: Successful response
@@ -107,10 +104,9 @@ paths:
           type: string
         - name: x-key-kype
           in: header
-          description: The encruption key type
+          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
           required: true
           type: string
-          enum: ["CONSULTANT", "CLIENT"]
         - name: client
           in: body
           required: true
@@ -138,10 +134,9 @@ paths:
           type: string
         - name: x-key-kype
           in: header
-          description: The encruption key type
+          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
           required: true
           type: string
-          enum: ["CONSULTANT", "CLIENT"]
         - name: client
           in: body
           required: true
@@ -170,10 +165,9 @@ paths:
           type: string
         - name: x-key-kype
           in: header
-          description: The encruption key type
+          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
           required: true
           type: string
-          enum: ["CONSULTANT", "CLIENT"]
       responses:
         200:
           description: Successful response
@@ -199,10 +193,9 @@ paths:
           type: string
         - name: x-key-kype
           in: header
-          description: The encruption key type
+          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
           required: true
           type: string
-          enum: ["CONSULTANT", "CLIENT"]
         - name: client
           in: body
           required: true
@@ -236,10 +229,9 @@ paths:
           type: string
         - name: x-key-kype
           in: header
-          description: The encruption key type
+          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
           required: true
           type: string
-          enum: ["CONSULTANT", "CLIENT"]
       responses:
         200:
           description: Successful response
@@ -269,10 +261,9 @@ paths:
           type: string
         - name: x-key-kype
           in: header
-          description: The encruption key type
+          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
           required: true
           type: string
-          enum: ["CONSULTANT", "CLIENT"]
         - name: client
           in: body
           required: true
@@ -305,10 +296,9 @@ paths:
           type: string
         - name: x-key-kype
           in: header
-          description: The encruption key type
+          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
           required: true
           type: string
-          enum: ["CONSULTANT", "CLIENT"]
         - name: client
           in: body
           required: true
