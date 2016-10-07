@@ -14,7 +14,7 @@ Creates a new 'Client' enitity
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type, must be either 'CONSULTANT' or 'CLIENT'|string||
+|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Body**|**client**  <br>*required*||[Client](#client)||
 
 
@@ -39,7 +39,7 @@ Only permitted by the consultant
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type, must be either 'CONSULTANT' or 'CLIENT'|string||
+|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 
 
 #### Responses
@@ -63,7 +63,7 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type, must be either 'CONSULTANT' or 'CLIENT'|string||
+|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 
 
@@ -88,7 +88,7 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type, must be either 'CONSULTANT' or 'CLIENT'|string||
+|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Body**|**client**  <br>*required*||[Client](#client)||
 
@@ -114,7 +114,7 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type, must be either 'CONSULTANT' or 'CLIENT'|string||
+|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Body**|**client**  <br>*required*||[Client](#client)||
 
@@ -139,7 +139,7 @@ Creates a new 'Record' enitity for thr thw owning client
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type, must be either 'CONSULTANT' or 'CLIENT'|string||
+|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Body**|**client**  <br>*required*||[Record](#record)||
 
@@ -165,7 +165,7 @@ Only permitted by the consultant
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type, must be either 'CONSULTANT' or 'CLIENT'|string||
+|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 
 
@@ -190,7 +190,7 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type, must be either 'CONSULTANT' or 'CLIENT'|string||
+|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Path**|**recordId**  <br>*required*|The ID of the client|integer||
 
@@ -216,7 +216,7 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type, must be either 'CONSULTANT' or 'CLIENT'|string||
+|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Path**|**recordId**  <br>*required*|The ID of the client|integer||
 |**Body**|**client**  <br>*required*||[Record](#record)||
@@ -243,7 +243,7 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type, must be either 'CONSULTANT' or 'CLIENT'|string||
+|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Path**|**recordId**  <br>*required*|The ID of the client|integer||
 |**Body**|**client**  <br>*required*||[Record](#record)||
