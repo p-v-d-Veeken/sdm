@@ -18,7 +18,7 @@ paths:
       parameters:
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-kype
@@ -41,7 +41,7 @@ paths:
       parameters:
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-kype
@@ -72,7 +72,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-kype
@@ -99,7 +99,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-kype
@@ -129,7 +129,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-kype
@@ -160,7 +160,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-kype
@@ -188,7 +188,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-kype
@@ -224,7 +224,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-kype
@@ -256,7 +256,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-kype
@@ -291,7 +291,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-kype
