@@ -18,14 +18,17 @@ paths:
       parameters:
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-kype
           in: header
-          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
+          description: The encryption key type
           required: true
           type: string
+          enum:
+            - CONSULTANT
+            - CLIENT
       responses:
         200:
           description: Successful response
@@ -41,14 +44,17 @@ paths:
       parameters:
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-kype
           in: header
-          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
+          description: The encryption key type
           required: true
           type: string
+          enum:
+            - CONSULTANT
+            - CLIENT
         - name: client
           in: body
           required: true
@@ -72,14 +78,17 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-kype
           in: header
-          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
+          description: The encryption key type
           required: true
           type: string
+          enum:
+            - CONSULTANT
+            - CLIENT
       responses:
         200:
           description: Successful response
@@ -99,14 +108,17 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-kype
           in: header
-          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
+          description: The encryption key type
           required: true
           type: string
+          enum:
+            - CONSULTANT
+            - CLIENT
         - name: client
           in: body
           required: true
@@ -129,14 +141,17 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-kype
           in: header
-          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
+          description: The encryption key type
           required: true
           type: string
+          enum:
+            - CONSULTANT
+            - CLIENT
         - name: client
           in: body
           required: true
@@ -160,14 +175,17 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-kype
           in: header
-          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
+          description: The encryption key type
           required: true
           type: string
+          enum:
+            - CONSULTANT
+            - CLIENT
       responses:
         200:
           description: Successful response
@@ -188,14 +206,17 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-kype
           in: header
-          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
+          description: The encryption key type
           required: true
           type: string
+          enum:
+            - CONSULTANT
+            - CLIENT
         - name: client
           in: body
           required: true
@@ -224,14 +245,17 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-kype
           in: header
-          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
+          description: The encryption key type
           required: true
           type: string
+          enum:
+            - CONSULTANT
+            - CLIENT
       responses:
         200:
           description: Successful response
@@ -256,14 +280,17 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-kype
           in: header
-          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
+          description: The encryption key type
           required: true
           type: string
+          enum:
+            - CONSULTANT
+            - CLIENT
         - name: client
           in: body
           required: true
@@ -291,14 +318,17 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-kype
           in: header
-          description: The encryption key type, must be either 'CONSULTANT' or 'CLIENT'
+          description: The encryption key type
           required: true
           type: string
+          enum:
+            - CONSULTANT
+            - CLIENT
         - name: client
           in: body
           required: true

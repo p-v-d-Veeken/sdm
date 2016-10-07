@@ -15,10 +15,6 @@
         <version>1.4.1.RELEASE</version>
     </parent>
 
-    <modules>
-        <module>swagger</module>
-    </modules>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -45,6 +41,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.tudelft.sdm.Application</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
