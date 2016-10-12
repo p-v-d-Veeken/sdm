@@ -21,7 +21,7 @@
 
 |Name|Description|Schema|
 |---|---|---|
-|**client_id**  <br>*optional*|The id of the owning client|integer|
+|**client_id**  <br>*optional*|The id of the concerning client|integer|
 |**created_at**  <br>*optional*|The creation date|string|
 |**id**  <br>*optional*|The id of the client|integer|
 |**name**  <br>*required*|The name of the record|string|

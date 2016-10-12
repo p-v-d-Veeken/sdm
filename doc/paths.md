@@ -6,14 +6,14 @@
 ### POST /clients
 
 #### Description
-Creates a new 'Client' enitity
+Creates a new 'Client' entity
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
+|**Header**|**x-key**  <br>*required*|The encryption key|string||
 |**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Body**|**client**  <br>*required*||[Client](#client)||
 
@@ -38,7 +38,7 @@ Only permitted by the consultant
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
+|**Header**|**x-key**  <br>*required*|The encryption key|string||
 |**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 
 
@@ -54,15 +54,15 @@ Only permitted by the consultant
 ### GET /clients/{clientId}
 
 #### Description
-Retrieves a  'Client' entity.
-Only permitted by the consultant or the client itself
+Retrieves a 'Client' entity.
+Only permitted by the consultant or the client themselves
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
+|**Header**|**x-key**  <br>*required*|The encryption key|string||
 |**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 
@@ -79,15 +79,15 @@ Only permitted by the consultant or the client itself
 ### PUT /clients/{clientId}
 
 #### Description
-Updates a  'Client' entity.
-Only permitted by the consultant or the client itself
+Updates a 'Client' entity.
+Only permitted by the consultant or the client themselves
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
+|**Header**|**x-key**  <br>*required*|The encryption key|string||
 |**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Body**|**client**  <br>*required*||[Client](#client)||
@@ -105,15 +105,15 @@ Only permitted by the consultant or the client itself
 ### DELETE /clients/{clientId}
 
 #### Description
-Deletes a  'Client' entity.
-Only permitted by the consultant or the client itself
+Deletes a 'Client' entity.
+Only permitted by the consultant or the client themselves
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
+|**Header**|**x-key**  <br>*required*|The encryption key|string||
 |**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Body**|**client**  <br>*required*||[Client](#client)||
@@ -131,14 +131,14 @@ Only permitted by the consultant or the client itself
 ### POST /clients/{clientId}/records
 
 #### Description
-Creates a new 'Record' enitity for thr thw owning client
+Creates a new 'Record' entity for the concerning client
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
+|**Header**|**x-key**  <br>*required*|The encryption key|string||
 |**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Body**|**client**  <br>*required*||[Record](#record)||
@@ -164,7 +164,7 @@ Only permitted by the consultant
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
+|**Header**|**x-key**  <br>*required*|The encryption key|string||
 |**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 
@@ -181,15 +181,15 @@ Only permitted by the consultant
 ### GET /clients/{clientId}/records/{recordId}
 
 #### Description
-Retrieves a  'Record' entity owned by the client.
-Only permitted by the consultant or the client itself
+Retrieves a 'Record' entity owned by the client.
+Only permitted by the consultant or the client themselves
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
+|**Header**|**x-key**  <br>*required*|The encryption key|string||
 |**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Path**|**recordId**  <br>*required*|The ID of the client|integer||
@@ -207,15 +207,15 @@ Only permitted by the consultant or the client itself
 ### PUT /clients/{clientId}/records/{recordId}
 
 #### Description
-Updates a  'Record' entity owned by the client.
-Only permitted by the consultant or the client itself
+Updates a 'Record' entity owned by the client.
+Only permitted by the consultant or the client themselves
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
+|**Header**|**x-key**  <br>*required*|The encryption key|string||
 |**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Path**|**recordId**  <br>*required*|The ID of the client|integer||
@@ -234,15 +234,15 @@ Only permitted by the consultant or the client itself
 ### DELETE /clients/{clientId}/records/{recordId}
 
 #### Description
-Deletes a  'Record' entity owned by the client.
-Only permitted by the consultant or the client itself
+Deletes a 'Record' entity owned by the client.
+Only permitted by the consultant or the client themselves
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
+|**Header**|**x-key**  <br>*required*|The encryption key|string||
 |**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Path**|**recordId**  <br>*required*|The ID of the client|integer||
