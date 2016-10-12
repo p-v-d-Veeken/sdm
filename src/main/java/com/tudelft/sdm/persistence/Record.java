@@ -1,4 +1,4 @@
-package com.tudelft.sdm.persistance;
+package com.tudelft.sdm.persistence;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

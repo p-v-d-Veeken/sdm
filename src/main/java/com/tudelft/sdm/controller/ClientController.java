@@ -1,8 +1,8 @@
 package com.tudelft.sdm.controller;
 
-import com.tudelft.sdm.persistance.Client;
-import com.tudelft.sdm.persistance.KeyTypeEnumeration;
-import com.tudelft.sdm.persistance.Record;
+import com.tudelft.sdm.persistence.Client;
+import com.tudelft.sdm.persistence.KeyTypeEnumeration;
+import com.tudelft.sdm.persistence.Record;
 import com.tudelft.sdm.service.ClientService;
 import com.tudelft.sdm.service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;

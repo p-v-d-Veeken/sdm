@@ -1,8 +1,8 @@
 package com.tudelft.sdm.service;
 
-import com.tudelft.sdm.persistance.Client;
-import com.tudelft.sdm.persistance.KeyTypeEnumeration;
-import com.tudelft.sdm.persistance.Record;
+import com.tudelft.sdm.persistence.Client;
+import com.tudelft.sdm.persistence.KeyTypeEnumeration;
+import com.tudelft.sdm.persistence.Record;
 
 import java.util.List;
 
