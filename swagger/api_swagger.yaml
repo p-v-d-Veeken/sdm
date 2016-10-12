@@ -40,7 +40,7 @@ paths:
           description: Something went wrong
     post:
       description: |
-        Creates a new 'Client' enitity
+        Creates a new 'Client' entity
       parameters:
         - name: x-key
           in: header
@@ -68,8 +68,8 @@ paths:
   /clients/{clientId}:
     get:
       description: |
-        Retrieves a  'Client' entity.
-        Only permitted by the consultant or the client itself
+        Retrieves a 'Client' entity.
+        Only permitted by the consultant or the client themselves
       parameters:
         - name: clientId
           in: path
@@ -98,8 +98,8 @@ paths:
           description: Something went wrong
     put:
       description: |
-        Updates a  'Client' entity.
-        Only permitted by the consultant or the client itself
+        Updates a 'Client' entity.
+        Only permitted by the consultant or the client themselves
       parameters:
         - name: clientId
           in: path
@@ -131,8 +131,8 @@ paths:
           description: Something went wrong
     delete:
       description: |
-        Deletes a  'Client' entity.
-        Only permitted by the consultant or the client itself
+        Deletes a 'Client' entity.
+        Only permitted by the consultant or the client themselves
       parameters:
         - name: clientId
           in: path
@@ -197,7 +197,7 @@ paths:
           description: Something went wrong
     post:
       description: |
-        Creates a new 'Record' enitity for thr thw owning client
+        Creates a new 'Record' entity for the concerning client
       parameters:
         - name: clientId
           in: path
@@ -230,8 +230,8 @@ paths:
   /clients/{clientId}/records/{recordId}:
     get:
       description: |
-        Retrieves a  'Record' entity owned by the client.
-        Only permitted by the consultant or the client itself
+        Retrieves a 'Record' entity owned by the client.
+        Only permitted by the consultant or the client themselves
       parameters:
         - name: clientId
           in: path
@@ -265,8 +265,8 @@ paths:
           description: Something went wrong
     put:
       description: |
-        Updates a  'Record' entity owned by the client.
-        Only permitted by the consultant or the client itself
+        Updates a 'Record' entity owned by the client.
+        Only permitted by the consultant or the client themselves
       parameters:
         - name: clientId
           in: path
@@ -303,8 +303,8 @@ paths:
           description: Something went wrong
     delete:
       description: |
-        Deletes a  'Record' entity owned by the client.
-        Only permitted by the consultant or the client itself
+        Deletes a 'Record' entity owned by the client.
+        Only permitted by the consultant or the client themselves
       parameters:
         - name: clientId
           in: path
@@ -394,4 +394,4 @@ definitions:
         description: The update date
       client_id:
         type: integer
-        description: The id of the owning client
+        description: The id of the concerning client
