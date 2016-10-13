@@ -18,7 +18,7 @@ paths:
       parameters:
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-type
@@ -41,7 +41,7 @@ paths:
       parameters:
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-type
@@ -74,7 +74,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-type
@@ -101,7 +101,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-type
@@ -131,7 +131,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-type
@@ -157,7 +157,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-type
@@ -185,7 +185,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-type
@@ -223,7 +223,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-type
@@ -255,7 +255,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-type
@@ -290,7 +290,7 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encruption key
+          description: The encryption key
           required: true
           type: string
         - name: x-key-type
