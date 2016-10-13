@@ -1,7 +1,7 @@
 package com.tudelft.sdm.service;
 
-import com.tudelft.sdm.persistance.KeyTypeEnumeration;
-import com.tudelft.sdm.persistance.Record;
+import com.tudelft.sdm.persistence.KeyTypeEnumeration;
+import com.tudelft.sdm.persistence.Record;
 import io.swagger.model.ApiRecord;
 
 import java.util.List;

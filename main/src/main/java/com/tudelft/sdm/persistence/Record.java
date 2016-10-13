@@ -1,4 +1,4 @@
-package com.tudelft.sdm.persistance;
+package com.tudelft.sdm.persistence;
 
 import com.tudelft.sdm.Application;
 import io.swagger.model.ApiRecord;
@@ -8,8 +8,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity

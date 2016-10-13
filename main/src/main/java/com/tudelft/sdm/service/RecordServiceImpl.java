@@ -1,10 +1,9 @@
 package com.tudelft.sdm.service;
 
-import com.tudelft.sdm.persistance.Client;
-import com.tudelft.sdm.persistance.KeyTypeEnumeration;
-import com.tudelft.sdm.persistance.Record;
-import com.tudelft.sdm.persistance.dao.ClientRepository;
-import com.tudelft.sdm.persistance.dao.RecordRepository;
+import com.tudelft.sdm.persistence.Client;
+import com.tudelft.sdm.persistence.KeyTypeEnumeration;
+import com.tudelft.sdm.persistence.Record;
+import com.tudelft.sdm.persistence.dao.RecordRepository;
 import io.swagger.model.ApiRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

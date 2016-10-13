@@ -1,6 +1,6 @@
-package com.tudelft.sdm.persistance.dao;
+package com.tudelft.sdm.persistence.dao;
 
-import com.tudelft.sdm.persistance.Record;
+import com.tudelft.sdm.persistence.Record;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

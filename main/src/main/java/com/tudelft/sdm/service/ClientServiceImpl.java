@@ -1,8 +1,8 @@
 package com.tudelft.sdm.service;
 
-import com.tudelft.sdm.persistance.Client;
-import com.tudelft.sdm.persistance.KeyTypeEnumeration;
-import com.tudelft.sdm.persistance.dao.ClientRepository;
+import com.tudelft.sdm.persistence.Client;
+import com.tudelft.sdm.persistence.KeyTypeEnumeration;
+import com.tudelft.sdm.persistence.dao.ClientRepository;
 import io.swagger.model.ModelApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
