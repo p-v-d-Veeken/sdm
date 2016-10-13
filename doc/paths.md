@@ -14,15 +14,15 @@ Creates a new 'Client' enitity
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
-|**Body**|**client**  <br>*required*||[Client](#client)||
+|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
+|**Body**|**client**  <br>*required*||[ApiClient](#apiclient)||
 
 
 #### Responses
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Successful response|No Content|
+|**200**|Successful response|[ApiClient](#apiclient)|
 |**400**|Something went wrong|No Content|
 
 
@@ -39,14 +39,14 @@ Only permitted by the consultant
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
+|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 
 
 #### Responses
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Successful response|< [Client](#client) > array|
+|**200**|Successful response|< [ApiClient](#apiclient) > array|
 |**400**|Something went wrong|No Content|
 
 
@@ -63,7 +63,7 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
+|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 
 
@@ -71,7 +71,7 @@ Only permitted by the consultant or the client itself
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Successful response|[Client](#client)|
+|**200**|Successful response|[ApiClient](#apiclient)|
 |**400**|Something went wrong|No Content|
 
 
@@ -88,9 +88,9 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
+|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Body**|**client**  <br>*required*||[Client](#client)||
+|**Body**|**client**  <br>*required*||[ApiClient](#apiclient)||
 
 
 #### Responses
@@ -114,9 +114,8 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
+|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Body**|**client**  <br>*required*||[Client](#client)||
 
 
 #### Responses
@@ -131,7 +130,7 @@ Only permitted by the consultant or the client itself
 ### POST /clients/{clientId}/records
 
 #### Description
-Creates a new 'Record' enitity for thr thw owning client
+Creates a new 'Record' enitity for the owning client
 
 
 #### Parameters
@@ -139,16 +138,16 @@ Creates a new 'Record' enitity for thr thw owning client
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
+|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Body**|**client**  <br>*required*||[Record](#record)||
+|**Body**|**record**  <br>*required*||[ApiRecord](#apirecord)||
 
 
 #### Responses
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Successful response|No Content|
+|**200**|Successful response|[ApiRecord](#apirecord)|
 |**400**|Something went wrong|No Content|
 
 
@@ -165,7 +164,7 @@ Only permitted by the consultant
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
+|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 
 
@@ -173,7 +172,7 @@ Only permitted by the consultant
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Successful response|< [Record](#record) > array|
+|**200**|Successful response|< [ApiRecord](#apirecord) > array|
 |**400**|Something went wrong|No Content|
 
 
@@ -190,7 +189,7 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
+|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Path**|**recordId**  <br>*required*|The ID of the client|integer||
 
@@ -199,7 +198,7 @@ Only permitted by the consultant or the client itself
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Successful response|[Record](#record)|
+|**200**|Successful response|[ApiRecord](#apirecord)|
 |**400**|Something went wrong|No Content|
 
 
@@ -216,10 +215,10 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
+|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Path**|**recordId**  <br>*required*|The ID of the client|integer||
-|**Body**|**client**  <br>*required*||[Record](#record)||
+|**Body**|**record**  <br>*required*||[ApiRecord](#apirecord)||
 
 
 #### Responses
@@ -243,10 +242,9 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-kype**  <br>*required*|The encryption key type|enum (CONSULTANT, CLIENT)||
+|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Path**|**recordId**  <br>*required*|The ID of the client|integer||
-|**Body**|**client**  <br>*required*||[Record](#record)||
 
 
 #### Responses

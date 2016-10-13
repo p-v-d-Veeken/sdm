@@ -2,8 +2,8 @@
 <a name="definitions"></a>
 ## Definitions
 
-<a name="client"></a>
-### Client
+<a name="apiclient"></a>
+### ApiClient
 
 |Name|Description|Schema|
 |---|---|---|
@@ -12,16 +12,15 @@
 |**fname**  <br>*required*|The first name of the client|string|
 |**id**  <br>*optional*|The id of the client|integer|
 |**lname**  <br>*required*|The last name of the client|string|
-|**records**  <br>*optional*||< [Record](#record) > array|
+|**records**  <br>*optional*||< [ApiRecord](#apirecord) > array|
 |**updated_at**  <br>*optional*|The update date|string|
 
 
-<a name="record"></a>
-### Record
+<a name="apirecord"></a>
+### ApiRecord
 
 |Name|Description|Schema|
 |---|---|---|
-|**client_id**  <br>*optional*|The id of the owning client|integer|
 |**created_at**  <br>*optional*|The creation date|string|
 |**id**  <br>*optional*|The id of the client|integer|
 |**name**  <br>*required*|The name of the record|string|

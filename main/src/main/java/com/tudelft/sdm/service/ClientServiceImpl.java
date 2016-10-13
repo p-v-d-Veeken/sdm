@@ -3,6 +3,7 @@ package com.tudelft.sdm.service;
 import com.tudelft.sdm.persistance.Client;
 import com.tudelft.sdm.persistance.KeyTypeEnumeration;
 import com.tudelft.sdm.persistance.dao.ClientRepository;
+import io.swagger.model.ModelApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,28 +25,39 @@ public class ClientServiceImpl implements ClientService{
     @Override
     @Transactional
     public Client find(int id, String key, KeyTypeEnumeration keyType) {
-        return clientDao.findOne((long) id);
+        Client client = clientDao.findOne((long) id);
+        if (client == null) {
+            throw new NullPointerException();
+        }
+        return client;
     }
 
     @Override
     @Transactional
-    public void create(Client client, String key, KeyTypeEnumeration keyType) {
+    public Client create(ModelApiClient apiClient, String key, KeyTypeEnumeration keyType) {
+        Client client = new Client(apiClient);
         client.setUpdated_at(new Date());
         client.setCreated_at(new Date());
         clientDao.save(client);
+        return client;
     }
 
     @Override
     @Transactional
-    public void update(Client client, String key, KeyTypeEnumeration keyType) {
+    public Void update(int id, ModelApiClient apiClient, String key, KeyTypeEnumeration keyType) {
+        Client client = this.find(id, key, keyType);
+        client.merge(apiClient);
         client.setUpdated_at(new Date());
         clientDao.save(client);
+        return null;
     }
 
     @Override
     @Transactional
-    public void delete(Client client, String key, KeyTypeEnumeration keyType) {
+    public Void delete(int id, String key, KeyTypeEnumeration keyType) {
+        Client client = this.find(id, key, keyType);
         clientDao.delete(client);
+        return null;
     }
 
     @Override
