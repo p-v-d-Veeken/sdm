@@ -11,18 +11,6 @@
         <module>swagger</module>
         <module>main</module>
     </modules>
-    <dependencies>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>1.5.8</version>
-        </dependency>
-        <dependency>
-            <groupId>com.tudelft.sdm</groupId>
-            <artifactId>swagger</artifactId>
-            <version>1.0.1</version>
-        </dependency>
-    </dependencies>
     <packaging>pom</packaging>
 
     <parent>
@@ -45,17 +33,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>spring-releases</id>
-            <url>https://repo.spring.io/libs-release</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-releases</id>
-            <url>https://repo.spring.io/libs-release</url>
-        </pluginRepository>
-    </pluginRepositories>
 </project>

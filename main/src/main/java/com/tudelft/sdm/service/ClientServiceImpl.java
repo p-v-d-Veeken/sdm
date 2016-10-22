@@ -1,7 +1,7 @@
 package com.tudelft.sdm.service;
 
 import com.tudelft.sdm.persistence.Client;
-import com.tudelft.sdm.persistence.KeyTypeEnumeration;
+import com.tudelft.sdm.persistence.enumerations.KeyTypeEnumeration;
 import com.tudelft.sdm.persistence.dao.ClientRepository;
 import io.swagger.model.ModelApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +34,12 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     @Transactional
-    public Client create(ModelApiClient apiClient, String key, KeyTypeEnumeration keyType) {
+    public Void create(ModelApiClient apiClient, String key, KeyTypeEnumeration keyType) {
         Client client = new Client(apiClient);
-        client.setUpdated_at(new Date());
-        client.setCreated_at(new Date());
+        client.setCreatedAt(new Date());
+        client.setUpdatedAt(new Date());
         clientDao.save(client);
-        return client;
+        return null;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class ClientServiceImpl implements ClientService{
     public Void update(int id, ModelApiClient apiClient, String key, KeyTypeEnumeration keyType) {
         Client client = this.find(id, key, keyType);
         client.merge(apiClient);
-        client.setUpdated_at(new Date());
+        client.setUpdatedAt(new Date());
         clientDao.save(client);
         return null;
     }

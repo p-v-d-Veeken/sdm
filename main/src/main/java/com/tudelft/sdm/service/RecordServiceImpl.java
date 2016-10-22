@@ -1,10 +1,11 @@
 package com.tudelft.sdm.service;
 
 import com.tudelft.sdm.persistence.Client;
-import com.tudelft.sdm.persistence.KeyTypeEnumeration;
+import com.tudelft.sdm.persistence.enumerations.KeyTypeEnumeration;
 import com.tudelft.sdm.persistence.Record;
 import com.tudelft.sdm.persistence.dao.RecordRepository;
 import io.swagger.model.ApiRecord;
+import io.swagger.model.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,6 @@ public class RecordServiceImpl implements RecordService {
         this.clientService = clientService;
     }
 
-    @Override
     public Record find(int recordId, int clientId, String key, KeyTypeEnumeration keyType) {
         Record record = recordDao.findByIdAndClientId((long) recordId, (long) clientId);
         if (record == null) {
@@ -33,21 +33,21 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public Record create(int clientId, ApiRecord apiRecord, String key, KeyTypeEnumeration keyType) {
+    public Void create(int clientId, ApiRecord apiRecord, String key, KeyTypeEnumeration keyType) {
         Client client = clientService.find(clientId, key, keyType);
         Record record = new Record(apiRecord);
-        record.setUpdated_at(new Date());
-        record.setCreated_at(new Date());
+        record.setCreatedAt(new Date());
+        record.setUpdatedAt(new Date());
         record.setClient(client);
         recordDao.save(record);
-        return record;
+        return null;
     }
 
     @Override
     public Void update(int recordId, int clientId, ApiRecord apiRecord, String key, KeyTypeEnumeration keyType) {
         Record record = this.find(recordId, clientId, key, keyType);
         record.merge(apiRecord);
-        record.setUpdated_at(new Date());
+        record.setUpdatedAt(new Date());
         recordDao.save(record);
         return null;
     }
@@ -61,6 +61,14 @@ public class RecordServiceImpl implements RecordService {
 
     @Override
     public List<Record> getAll(int clientId, String key, KeyTypeEnumeration keyType) {
+        Client client = clientService.find(clientId, key, keyType);
         return recordDao.findByClientId((long) clientId);
+    }
+
+    @Override
+    public List<Record> find(int clientId, List<Query> query, String key, KeyTypeEnumeration keyType) {
+        Client client = clientService.find(clientId, key, keyType);
+        // TODO filter records
+        return client.getRecords();
     }
 }

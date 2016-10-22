@@ -6,7 +6,7 @@
 ### POST /clients
 
 #### Description
-Creates a new 'Client' enitity
+Creates a new 'ApiClient' enitity
 
 
 #### Parameters
@@ -14,7 +14,7 @@ Creates a new 'Client' enitity
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
+|**Header**|**x-key-type**  <br>*required*|The encruption key type|string||
 |**Body**|**client**  <br>*required*||[ApiClient](#apiclient)||
 
 
@@ -22,7 +22,7 @@ Creates a new 'Client' enitity
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Successful response|[ApiClient](#apiclient)|
+|**200**|Successful response|No Content|
 |**400**|Something went wrong|No Content|
 
 
@@ -30,7 +30,7 @@ Creates a new 'Client' enitity
 ### GET /clients
 
 #### Description
-Retrieves an array of all 'Client' entities.
+Retrieves an array of all 'ApiClient' entities.
 Only permitted by the consultant
 
 
@@ -38,8 +38,8 @@ Only permitted by the consultant
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
+|**Header**|**x-key**  <br>*required*|The encryption key|string||
+|**Header**|**x-key-type**  <br>*required*|The encruption key type|string||
 
 
 #### Responses
@@ -54,7 +54,7 @@ Only permitted by the consultant
 ### GET /clients/{clientId}
 
 #### Description
-Retrieves a  'Client' entity.
+Retrieves a  'ApiClient' entity.
 Only permitted by the consultant or the client itself
 
 
@@ -63,7 +63,7 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
+|**Header**|**x-key-type**  <br>*required*|The encruption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 
 
@@ -79,7 +79,7 @@ Only permitted by the consultant or the client itself
 ### PUT /clients/{clientId}
 
 #### Description
-Updates a  'Client' entity.
+Updates a  'ApiClient' entity.
 Only permitted by the consultant or the client itself
 
 
@@ -88,7 +88,7 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
+|**Header**|**x-key-type**  <br>*required*|The encruption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Body**|**client**  <br>*required*||[ApiClient](#apiclient)||
 
@@ -105,7 +105,7 @@ Only permitted by the consultant or the client itself
 ### DELETE /clients/{clientId}
 
 #### Description
-Deletes a  'Client' entity.
+Deletes a  'ApiClient' entity.
 Only permitted by the consultant or the client itself
 
 
@@ -114,7 +114,7 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
+|**Header**|**x-key-type**  <br>*required*|The encruption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 
 
@@ -126,11 +126,11 @@ Only permitted by the consultant or the client itself
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-records-post"></a>
-### POST /clients/{clientId}/records
+<a name="clients-clientid-apirecords-post"></a>
+### POST /clients/{clientId}/ApiRecords
 
 #### Description
-Creates a new 'Record' enitity for the owning client
+Creates a new 'ApiRecord' enitity for thr thw owning client
 
 
 #### Parameters
@@ -138,24 +138,24 @@ Creates a new 'Record' enitity for the owning client
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
+|**Header**|**x-key-type**  <br>*required*|The encruption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Body**|**record**  <br>*required*||[ApiRecord](#apirecord)||
+|**Body**|**client**  <br>*required*||[ApiRecord](#apirecord)||
 
 
 #### Responses
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Successful response|[ApiRecord](#apirecord)|
+|**200**|Successful response|No Content|
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-records-get"></a>
-### GET /clients/{clientId}/records
+<a name="clients-clientid-apirecords-get"></a>
+### GET /clients/{clientId}/ApiRecords
 
 #### Description
-Retrieves an array of all 'Record' entities owned by the client indicated with the clientId.
+Retrieves an array of all 'ApiRecord' entities owned by the client indicated with the clientId.
 Only permitted by the consultant
 
 
@@ -164,8 +164,9 @@ Only permitted by the consultant
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
+|**Header**|**x-key-type**  <br>*required*|The encruption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
+|**Body**|**query**  <br>*required*|The query to filter the ApiRecords with|< [Query](#query) > array||
 
 
 #### Responses
@@ -176,11 +177,11 @@ Only permitted by the consultant
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-records-recordid-get"></a>
-### GET /clients/{clientId}/records/{recordId}
+<a name="clients-clientid-apirecords-apirecordid-put"></a>
+### PUT /clients/{clientId}/ApiRecords/{ApiRecordId}
 
 #### Description
-Retrieves a  'Record' entity owned by the client.
+Updates a  'ApiRecord' entity owned by the client.
 Only permitted by the consultant or the client itself
 
 
@@ -189,36 +190,10 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
+|**Header**|**x-key-type**  <br>*required*|The encruption key type|string||
+|**Path**|**ApiRecordId**  <br>*required*|The ID of the client|integer||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Path**|**recordId**  <br>*required*|The ID of the client|integer||
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Successful response|[ApiRecord](#apirecord)|
-|**400**|Something went wrong|No Content|
-
-
-<a name="clients-clientid-records-recordid-put"></a>
-### PUT /clients/{clientId}/records/{recordId}
-
-#### Description
-Updates a  'Record' entity owned by the client.
-Only permitted by the consultant or the client itself
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
-|**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Path**|**recordId**  <br>*required*|The ID of the client|integer||
-|**Body**|**record**  <br>*required*||[ApiRecord](#apirecord)||
+|**Body**|**client**  <br>*required*||[ApiRecord](#apirecord)||
 
 
 #### Responses
@@ -229,11 +204,11 @@ Only permitted by the consultant or the client itself
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-records-recordid-delete"></a>
-### DELETE /clients/{clientId}/records/{recordId}
+<a name="clients-clientid-apirecords-apirecordid-delete"></a>
+### DELETE /clients/{clientId}/ApiRecords/{ApiRecordId}
 
 #### Description
-Deletes a  'Record' entity owned by the client.
+Deletes a  'ApiRecord' entity owned by the client.
 Only permitted by the consultant or the client itself
 
 
@@ -242,9 +217,9 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
+|**Header**|**x-key-type**  <br>*required*|The encruption key type|string||
+|**Path**|**ApiRecordId**  <br>*required*|The ID of the client|integer||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Path**|**recordId**  <br>*required*|The ID of the client|integer||
 
 
 #### Responses

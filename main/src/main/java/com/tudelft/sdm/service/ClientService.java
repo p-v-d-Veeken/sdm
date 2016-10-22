@@ -2,7 +2,7 @@ package com.tudelft.sdm.service;
 
 
 import com.tudelft.sdm.persistence.Client;
-import com.tudelft.sdm.persistence.KeyTypeEnumeration;
+import com.tudelft.sdm.persistence.enumerations.KeyTypeEnumeration;
 import io.swagger.model.ModelApiClient;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 public interface ClientService {
 
     Client find(int id, String key, KeyTypeEnumeration keyType);
-    Client create(ModelApiClient apiClient, String key, KeyTypeEnumeration keyType);
+    Void create(ModelApiClient apiClient, String key, KeyTypeEnumeration keyType);
     Void update(int id, ModelApiClient apiClient, String key, KeyTypeEnumeration keyType);
     Void delete(int id, String key, KeyTypeEnumeration keyType);
 

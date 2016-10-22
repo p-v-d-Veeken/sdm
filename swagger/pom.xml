@@ -12,7 +12,7 @@
     <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>swagger</artifactId>
+    <artifactId>api_swagger</artifactId>
 
     <build>
         <plugins>
@@ -20,19 +20,6 @@
                 <groupId>io.github.swagger2markup</groupId>
                 <artifactId>swagger2markup-maven-plugin</artifactId>
                 <version>1.0.1</version>
-                <goals>compile</goals>
-                <dependencies>
-                    <dependency>
-                        <groupId>io.github.swagger2markup</groupId>
-                        <artifactId>swagger2markup-import-files-ext</artifactId>
-                        <version>1.0.0</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>io.github.swagger2markup</groupId>
-                        <artifactId>swagger2markup</artifactId>
-                        <version>1.0.1</version>
-                    </dependency>
-                </dependencies>
                 <configuration>
                     <swaggerInput>${project.basedir}/api_swagger.yaml</swaggerInput>
                     <outputDir>${project.basedir}/../doc</outputDir>
@@ -45,7 +32,6 @@
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-codegen-maven-plugin</artifactId>
                 <version>2.2.1</version>
-                <goals>package</goals>
                 <executions>
                     <execution>
                         <id>generate-server</id>
@@ -82,15 +68,30 @@
             <version>4.3.3.RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>org.jboss.osgi</groupId>
-            <artifactId>javax.servlet.api</artifactId>
-            <version>2.5.Final</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <version>
-                1.4.1.RELEASE</version>
+            <version>1.4.1.RELEASE</version>
         </dependency>
     </dependencies>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jcenter-snapshots</id>
+            <name>jcenter</name>
+            <url>http://oss.jfrog.org/artifactory/oss-snapshot-local/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>jcenter-releases</id>
+            <name>jcenter</name>
+            <url>http://jcenter.bintray.com</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

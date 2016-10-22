@@ -13,7 +13,7 @@ paths:
   /clients:
     get:
       description: |
-        Retrieves an array of all 'Client' entities.
+        Retrieves an array of all 'ApiClient' entities.
         Only permitted by the consultant
       parameters:
         - name: x-key
@@ -23,7 +23,7 @@ paths:
           type: string
         - name: x-key-type
           in: header
-          description: The encryption key type
+          description: The encruption key type
           required: true
           type: string
       responses:
@@ -37,16 +37,16 @@ paths:
           description: Something went wrong
     post:
       description: |
-        Creates a new 'Client' enitity
+        Creates a new 'ApiClient' enitity
       parameters:
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-type
           in: header
-          description: The encryption key type
+          description: The encruption key type
           required: true
           type: string
         - name: client
@@ -57,14 +57,12 @@ paths:
       responses:
         200:
           description: Successful response
-          schema:
-            $ref: "#/definitions/ApiClient"
         400:
           description: Something went wrong
   /clients/{clientId}:
     get:
       description: |
-        Retrieves a  'Client' entity.
+        Retrieves a  'ApiClient' entity.
         Only permitted by the consultant or the client itself
       parameters:
         - name: clientId
@@ -74,12 +72,12 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-type
           in: header
-          description: The encryption key type
+          description: The encruption key type
           required: true
           type: string
       responses:
@@ -91,7 +89,7 @@ paths:
           description: Something went wrong
     put:
       description: |
-        Updates a  'Client' entity.
+        Updates a  'ApiClient' entity.
         Only permitted by the consultant or the client itself
       parameters:
         - name: clientId
@@ -101,12 +99,12 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-type
           in: header
-          description: The encryption key type
+          description: The encruption key type
           required: true
           type: string
         - name: client
@@ -121,7 +119,7 @@ paths:
           description: Something went wrong
     delete:
       description: |
-        Deletes a  'Client' entity.
+        Deletes a  'ApiClient' entity.
         Only permitted by the consultant or the client itself
       parameters:
         - name: clientId
@@ -131,12 +129,12 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-type
           in: header
-          description: The encryption key type
+          description: The encruption key type
           required: true
           type: string
       responses:
@@ -144,10 +142,10 @@ paths:
           description: Successful response
         400:
           description: Something went wrong
-  /clients/{clientId}/records:
+  /clients/{clientId}/ApiRecords:
     get:
       description: |
-        Retrieves an array of all 'Record' entities owned by the client indicated with the clientId.
+        Retrieves an array of all 'ApiRecord' entities owned by the client indicated with the clientId.
         Only permitted by the consultant
       parameters:
         - name: clientId
@@ -157,18 +155,18 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-type
           in: header
-          description: The encryption key type
+          description: The encruption key type
           required: true
           type: string
         - name: query
           in: body
           required: true
-          description: The query to filter the records with
+          description: The query to filter the ApiRecords with
           schema:
             type: array
             items:
@@ -184,7 +182,7 @@ paths:
           description: Something went wrong
     post:
       description: |
-        Creates a new 'Record' enitity for the owning client
+        Creates a new 'ApiRecord' enitity for thr thw owning client
       parameters:
         - name: clientId
           in: path
@@ -193,15 +191,15 @@ paths:
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-type
           in: header
-          description: The encryption key type
+          description: The encruption key type
           required: true
           type: string
-        - name: record
+        - name: client
           in: body
           required: true
           schema:
@@ -209,14 +207,12 @@ paths:
       responses:
         200:
           description: Successful response
-          schema:
-            $ref: "#/definitions/ApiRecord"
         400:
           description: Something went wrong
-  /clients/{clientId}/records/{recordId}:
+  /clients/{clientId}/ApiRecords/{ApiRecordId}:
     put:
       description: |
-        Updates a  'Record' entity owned by the client.
+        Updates a  'ApiRecord' entity owned by the client.
         Only permitted by the consultant or the client itself
       parameters:
         - name: clientId
@@ -224,22 +220,22 @@ paths:
           type: integer
           required: true
           description: The ID of the client
-        - name: recordId
+        - name: ApiRecordId
           in: path
           type: integer
           required: true
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-type
           in: header
-          description: The encryption key type
+          description: The encruption key type
           required: true
           type: string
-        - name: record
+        - name: client
           in: body
           required: true
           schema:
@@ -251,7 +247,7 @@ paths:
           description: Something went wrong
     delete:
       description: |
-        Deletes a  'Record' entity owned by the client.
+        Deletes a  'ApiRecord' entity owned by the client.
         Only permitted by the consultant or the client itself
       parameters:
         - name: clientId
@@ -259,19 +255,19 @@ paths:
           type: integer
           required: true
           description: The ID of the client
-        - name: recordId
+        - name: ApiRecordId
           in: path
           type: integer
           required: true
           description: The ID of the client
         - name: x-key
           in: header
-          description: The encryption key
+          description: The encruption key
           required: true
           type: string
         - name: x-key-type
           in: header
-          description: The encryption key type
+          description: The encruption key type
           required: true
           type: string
       responses:
@@ -279,7 +275,6 @@ paths:
           description: Successful response
         400:
           description: Something went wrong
-
 
 definitions:
   Query:
@@ -292,14 +287,12 @@ definitions:
       column:
         type: string
         description: The clumn you want to filter on
-        enum: ['KEY', 'VALUE']
       value:
         type: string
         description: The value you want to compare the entry against, text for key and numeric for value
       operator:
         type: string
         description: The operation to use for comparison
-        enum: ['<', '>=', '=']
   ApiClient:
     type: object
     required:
@@ -319,16 +312,12 @@ definitions:
       email:
         type: string
         description: The email of the client
-      created_at:
+      createdAt:
         type: string
         description: The creation date
-      updated_at:
+      updatedAt:
         type: string
         description: The update date
-      records:
-        type: array
-        items:
-          $ref: "#/definitions/ApiRecord"
   ApiRecord:
     type: object
     required:
@@ -340,13 +329,16 @@ definitions:
         description: The id of the client
       name:
         type: string
-        description: The name of the record
+        description: The name of the ApiRecord
       value:
         type: string
-        description: The value of the record
-      created_at:
+        description: The value of the ApiRecord
+      createdAt:
         type: string
         description: The creation date
-      updated_at:
+      updatedAt:
         type: string
         description: The update date
+      client_id:
+        type: integer
+        description: The id of the owning client

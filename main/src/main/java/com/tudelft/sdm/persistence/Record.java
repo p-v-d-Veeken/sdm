@@ -2,8 +2,6 @@ package com.tudelft.sdm.persistence;
 
 import com.tudelft.sdm.Application;
 import io.swagger.model.ApiRecord;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,8 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "records")
 public class Record implements Serializable {
 
@@ -34,12 +30,12 @@ public class Record implements Serializable {
     @NotNull
     @Column(columnDefinition="DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at;
+    private Date createdAt;
 
     @NotNull
     @Column(columnDefinition="DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at;
+    private Date updatedAt;
 
     public Record() {}
 
@@ -53,18 +49,61 @@ public class Record implements Serializable {
         this.value = record.getValue();
     }
 
-    public void merge(Record record) {
-        this.name = record.getName();
-        this.value = record.getValue();
-    }
-
     public ApiRecord cast() {
         ApiRecord record = new ApiRecord();
         record.setId(this.id.intValue());
         record.setName(this.name);
         record.setValue(this.value);
-        record.setCreatedAt(Application.dateFormat.format(this.created_at));
-        record.setUpdatedAt(Application.dateFormat.format(this.updated_at));
+        record.setCreatedAt(Application.dateFormat.format(this.createdAt));
+        record.setUpdatedAt(Application.dateFormat.format(this.updatedAt));
         return record;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
