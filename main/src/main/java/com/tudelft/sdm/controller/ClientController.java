@@ -2,15 +2,11 @@ package com.tudelft.sdm.controller;
 
 import com.tudelft.sdm.controller.core.ExceptionController;
 import com.tudelft.sdm.persistence.Client;
-import com.tudelft.sdm.persistence.Record;
-import com.tudelft.sdm.persistence.enumerations.KeyTypeEnumeration;
 import com.tudelft.sdm.service.ClientService;
 import com.tudelft.sdm.service.RecordService;
 import io.swagger.annotations.ApiParam;
 import io.swagger.api.ClientsApi;
-import io.swagger.model.ApiRecord;
-import io.swagger.model.ModelApiClient;
-import io.swagger.model.Query;
+import io.swagger.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -35,47 +31,47 @@ public class ClientController extends ExceptionController implements ClientsApi 
     }
 
     @Override
-    public ResponseEntity<Void> clientsClientIdDelete(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "The encruption key", required = true) @RequestHeader(value = "x-key", required = true) String xKey, @ApiParam(value = "The encryption key type", required = true) @RequestHeader(value = "x-key-type", required = true) String xKeyType) {
-        return handleExceptions(() -> clientService.delete(clientId, xKey, KeyTypeEnumeration.valueOf(xKeyType)));
+    public ResponseEntity<Void> clientsClientIdDelete(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "", required = true) @RequestBody final Keyring keyring) {
+        return handleExceptions(() -> clientService.delete(clientId, keyring));
     }
 
     @Override
-    public ResponseEntity<ModelApiClient> clientsClientIdGet(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "The encruption key", required = true) @RequestHeader(value = "x-key", required = true) String xKey, @ApiParam(value = "The encryption key type", required = true) @RequestHeader(value = "x-key-type", required = true) String xKeyType) {
-        return handleExceptions(() -> clientService.find(clientId, xKey, KeyTypeEnumeration.valueOf(xKeyType)).cast());
+    public ResponseEntity<ModelApiClient> clientsClientIdGet(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "", required = true) @RequestBody Keyring keyring) {
+        return handleExceptions(() -> clientService.find(clientId, keyring).cast());
     }
 
     @Override
-    public ResponseEntity<Void> clientsClientIdPut(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "The encruption key", required = true) @RequestHeader(value = "x-key", required = true) String xKey, @ApiParam(value = "The encryption key type", required = true) @RequestHeader(value = "x-key-type", required = true) String xKeyType, @ApiParam(value = "", required = true) @RequestBody ModelApiClient client) {
-        return handleExceptions(() -> clientService.update(clientId, client, xKey, KeyTypeEnumeration.valueOf(xKeyType)));
+    public ResponseEntity<Void> clientsClientIdPut(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "", required = true) @RequestBody ClientBundle data) {
+        return handleExceptions(() -> clientService.update(clientId, data.getClient(), data.getKeyring()));
     }
 
     @Override
-    public ResponseEntity<Void> clientsClientIdApiRecordsPost(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "The encruption key", required = true) @RequestHeader(value = "x-key", required = true) String xKey, @ApiParam(value = "The encryption key type", required = true) @RequestHeader(value = "x-key-type", required = true) String xKeyType, @ApiParam(value = "", required = true) @RequestBody ApiRecord record) {
-        return handleExceptions(() -> recordService.create(clientId, record, xKey, KeyTypeEnumeration.valueOf(xKeyType)));
+    public ResponseEntity<List<ApiRecord>> clientsClientIdRecordsGet(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "", required = true) @RequestBody QueryBundle data) {
+        return handleExceptions(() -> recordService.find(clientId, data.getQuery(), data.getKeyring()));
     }
 
     @Override
-    public ResponseEntity<Void> clientsClientIdApiRecordsApiRecordIdDelete(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "The ID of the client", required = true) @PathVariable("recordId") Integer recordId, @ApiParam(value = "The encruption key", required = true) @RequestHeader(value = "x-key", required = true) String xKey, @ApiParam(value = "The encryption key type", required = true) @RequestHeader(value = "x-key-type", required = true) String xKeyType) {
-        return handleExceptions(() -> recordService.delete(recordId, clientId, xKey, KeyTypeEnumeration.valueOf(xKeyType)));
+    public ResponseEntity<ApiRecord> clientsClientIdRecordsPost(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "", required = true) @RequestBody RecordBundle data) {
+        return handleExceptions(() -> recordService.create(clientId, data.getRecord(), data.getKeyring()));
     }
 
     @Override
-    public ResponseEntity<Void> clientsClientIdApiRecordsApiRecordIdPut(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "The ID of the client", required = true) @PathVariable("recordId") Integer recordId, @ApiParam(value = "The encruption key", required = true) @RequestHeader(value = "x-key", required = true) String xKey, @ApiParam(value = "The encryption key type", required = true) @RequestHeader(value = "x-key-type", required = true) String xKeyType, @ApiParam(value = "", required = true) @RequestBody ApiRecord record) {
-        return handleExceptions(() -> recordService.update(recordId, clientId, record, xKey, KeyTypeEnumeration.valueOf(xKeyType)));
+    public ResponseEntity<Void> clientsClientIdRecordsRecordIdDelete(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "The ID of the client", required = true) @PathVariable("recordId") Integer recordId, @ApiParam(value = "", required = true) @RequestBody Keyring keyring) {
+        return handleExceptions(() -> recordService.delete(recordId, clientId, keyring));
     }
 
     @Override
-    public ResponseEntity<List<ApiRecord>> clientsClientIdApiRecordsGet(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "The encruption key", required = true) @RequestHeader(value = "x-key", required = true) String xKey, @ApiParam(value = "The encruption key type", required = true) @RequestHeader(value = "x-key-type", required = true) String xKeyType, @ApiParam(value = "The query to filter the ApiRecords with", required = true) @RequestBody List<Query> query) {
-        return handleExceptions(() -> recordService.find(clientId, query, xKey, KeyTypeEnumeration.valueOf(xKeyType)).parallelStream().map(Record::cast).collect(Collectors.toList()));
+    public ResponseEntity<Void> clientsClientIdRecordsRecordIdPut(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "The ID of the client", required = true) @PathVariable("recordId") Integer recordId, @ApiParam(value = "", required = true) @RequestBody RecordBundle data) {
+        return handleExceptions(() -> recordService.update(recordId, clientId, data.getRecord(), data.getKeyring()));
     }
 
     @Override
-    public ResponseEntity<List<ModelApiClient>> clientsGet(@ApiParam(value = "The encruption key", required = true) @RequestHeader(value = "x-key", required = true) String xKey, @ApiParam(value = "The encryption key type", required = true) @RequestHeader(value = "x-key-type", required = true) String xKeyType) {
-        return handleExceptions(() -> clientService.getAll(xKey, KeyTypeEnumeration.valueOf(xKeyType)).parallelStream().map(Client::cast).collect(Collectors.toList()));
+    public ResponseEntity<List<ModelApiClient>> clientsGet(@ApiParam(value = "", required = true) @RequestBody Keyring keyring) {
+        return handleExceptions(() -> clientService.getAll(keyring).parallelStream().map(Client::cast).collect(Collectors.toList()));
     }
 
     @Override
-    public ResponseEntity<Void> clientsPost(@ApiParam(value = "The encruption key", required = true) @RequestHeader(value = "x-key", required = true) String xKey, @ApiParam(value = "The encryption key type", required = true) @RequestHeader(value = "x-key-type", required = true) String xKeyType, @ApiParam(value = "", required = true) @RequestBody ModelApiClient client) {
-        return handleExceptions(() -> clientService.create(client, xKey, KeyTypeEnumeration.valueOf(xKeyType)));
+    public ResponseEntity<ClientBundle> clientsPost(@ApiParam(value = "", required = true) @RequestBody ClientBundle data) {
+        return handleExceptions(() -> clientService.create(data.getClient(), data.getKeyring()));
     }
 }

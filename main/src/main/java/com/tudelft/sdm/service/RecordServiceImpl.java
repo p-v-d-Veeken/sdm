@@ -1,10 +1,10 @@
 package com.tudelft.sdm.service;
 
 import com.tudelft.sdm.persistence.Client;
-import com.tudelft.sdm.persistence.enumerations.KeyTypeEnumeration;
 import com.tudelft.sdm.persistence.Record;
 import com.tudelft.sdm.persistence.dao.RecordRepository;
 import io.swagger.model.ApiRecord;
+import io.swagger.model.Keyring;
 import io.swagger.model.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class RecordServiceImpl implements RecordService {
         this.clientService = clientService;
     }
 
-    public Record find(int recordId, int clientId, String key, KeyTypeEnumeration keyType) {
+    public Record find(int recordId, int clientId, Keyring keyring) {
         Record record = recordDao.findByIdAndClientId((long) recordId, (long) clientId);
         if (record == null) {
             throw new NullPointerException();
@@ -33,8 +33,8 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public Void create(int clientId, ApiRecord apiRecord, String key, KeyTypeEnumeration keyType) {
-        Client client = clientService.find(clientId, key, keyType);
+    public Void create(int clientId, ApiRecord apiRecord, Keyring keyring) {
+        Client client = clientService.find(clientId, keyring);
         Record record = new Record(apiRecord);
         record.setCreatedAt(new Date());
         record.setUpdatedAt(new Date());
@@ -44,8 +44,8 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public Void update(int recordId, int clientId, ApiRecord apiRecord, String key, KeyTypeEnumeration keyType) {
-        Record record = this.find(recordId, clientId, key, keyType);
+    public Void update(int recordId, int clientId, ApiRecord apiRecord, Keyring keyring) {
+        Record record = this.find(recordId, clientId, keyring);
         record.merge(apiRecord);
         record.setUpdatedAt(new Date());
         recordDao.save(record);
@@ -53,21 +53,15 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public Void delete(int recordId, int clientId, String key, KeyTypeEnumeration keyType) {
-        Record record = this.find(recordId, clientId, key, keyType);
+    public Void delete(int recordId, int clientId, Keyring keyring) {
+        Record record = this.find(recordId, clientId, keyring);
         recordDao.delete(record);
         return null;
     }
 
     @Override
-    public List<Record> getAll(int clientId, String key, KeyTypeEnumeration keyType) {
-        Client client = clientService.find(clientId, key, keyType);
-        return recordDao.findByClientId((long) clientId);
-    }
-
-    @Override
-    public List<Record> find(int clientId, List<Query> query, String key, KeyTypeEnumeration keyType) {
-        Client client = clientService.find(clientId, key, keyType);
+    public List<Record> find(int clientId, List<Query> query, Keyring keyring) {
+        Client client = clientService.find(clientId, keyring);
         // TODO filter records
         return client.getRecords();
     }

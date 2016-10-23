@@ -2,18 +2,18 @@ package com.tudelft.sdm.service;
 
 
 import com.tudelft.sdm.persistence.Client;
-import com.tudelft.sdm.persistence.enumerations.KeyTypeEnumeration;
+import io.swagger.model.Keyring;
 import io.swagger.model.ModelApiClient;
 
 import java.util.List;
 
 public interface ClientService {
 
-    Client find(int id, String key, KeyTypeEnumeration keyType);
-    Void create(ModelApiClient apiClient, String key, KeyTypeEnumeration keyType);
-    Void update(int id, ModelApiClient apiClient, String key, KeyTypeEnumeration keyType);
-    Void delete(int id, String key, KeyTypeEnumeration keyType);
+    Client find(int id, Keyring keyring);
+    Void create(ModelApiClient apiClient, Keyring keyring);
+    Void update(int id, ModelApiClient apiClient, Keyring keyring);
+    Void delete(int id, Keyring keyring);
 
-    List<Client> getAll(String key, KeyTypeEnumeration keyType);
+    List<Client> getAll(Keyring keyring);
     //TODO search specifieke methoden hier declareren
 }

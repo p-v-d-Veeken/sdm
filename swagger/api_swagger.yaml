@@ -13,19 +13,14 @@ paths:
   /clients:
     get:
       description: |
-        Retrieves an array of all 'ApiClient' entities.
+        Retrieves an array of all 'Client' entities.
         Only permitted by the consultant
       parameters:
-        - name: x-key
-          in: header
-          description: The encryption key
+        - name: keyring
+          in: body
           required: true
-          type: string
-        - name: x-key-type
-          in: header
-          description: The encruption key type
-          required: true
-          type: string
+          schema:
+            $ref: '#/definitions/Keyring'
       responses:
         200:
           description: Successful response
@@ -37,32 +32,24 @@ paths:
           description: Something went wrong
     post:
       description: |
-        Creates a new 'ApiClient' enitity
+        Creates a new 'Client' enitity
       parameters:
-        - name: x-key
-          in: header
-          description: The encruption key
-          required: true
-          type: string
-        - name: x-key-type
-          in: header
-          description: The encruption key type
-          required: true
-          type: string
-        - name: client
+        - name: data
           in: body
           required: true
           schema:
-            $ref: "#/definitions/ApiClient"
+            $ref: "#/definitions/ClientBundle"
       responses:
         200:
           description: Successful response
+          schema:
+            $ref: "#/definitions/ClientBundle"
         400:
           description: Something went wrong
   /clients/{clientId}:
     get:
       description: |
-        Retrieves a  'ApiClient' entity.
+        Retrieves a  'Client' entity.
         Only permitted by the consultant or the client itself
       parameters:
         - name: clientId
@@ -70,16 +57,11 @@ paths:
           type: integer
           required: true
           description: The ID of the client
-        - name: x-key
-          in: header
-          description: The encruption key
+        - name: keyring
+          in: body
           required: true
-          type: string
-        - name: x-key-type
-          in: header
-          description: The encruption key type
-          required: true
-          type: string
+          schema:
+            $ref: '#/definitions/Keyring'
       responses:
         200:
           description: Successful response
@@ -89,7 +71,7 @@ paths:
           description: Something went wrong
     put:
       description: |
-        Updates a  'ApiClient' entity.
+        Updates a  'Client' entity.
         Only permitted by the consultant or the client itself
       parameters:
         - name: clientId
@@ -97,21 +79,11 @@ paths:
           type: integer
           required: true
           description: The ID of the client
-        - name: x-key
-          in: header
-          description: The encruption key
-          required: true
-          type: string
-        - name: x-key-type
-          in: header
-          description: The encruption key type
-          required: true
-          type: string
-        - name: client
+        - name: data
           in: body
           required: true
           schema:
-            $ref: "#/definitions/ApiClient"
+            $ref: "#/definitions/ClientBundle"
       responses:
         200:
           description: Successful response
@@ -119,7 +91,7 @@ paths:
           description: Something went wrong
     delete:
       description: |
-        Deletes a  'ApiClient' entity.
+        Deletes a  'Client' entity.
         Only permitted by the consultant or the client itself
       parameters:
         - name: clientId
@@ -127,25 +99,20 @@ paths:
           type: integer
           required: true
           description: The ID of the client
-        - name: x-key
-          in: header
-          description: The encruption key
+        - name: keyring
+          in: body
           required: true
-          type: string
-        - name: x-key-type
-          in: header
-          description: The encruption key type
-          required: true
-          type: string
+          schema:
+            $ref: '#/definitions/Keyring'
       responses:
         200:
           description: Successful response
         400:
           description: Something went wrong
-  /clients/{clientId}/ApiRecords:
+  /clients/{clientId}/records:
     get:
       description: |
-        Retrieves an array of all 'ApiRecord' entities owned by the client indicated with the clientId.
+        Retrieves an array of all 'Record' entities owned by the client indicated with the clientId.
         Only permitted by the consultant
       parameters:
         - name: clientId
@@ -153,24 +120,11 @@ paths:
           type: integer
           required: true
           description: The ID of the client
-        - name: x-key
-          in: header
-          description: The encruption key
-          required: true
-          type: string
-        - name: x-key-type
-          in: header
-          description: The encruption key type
-          required: true
-          type: string
-        - name: query
+        - name: data
           in: body
           required: true
-          description: The query to filter the ApiRecords with
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Query"
+            $ref: "#/definitions/QueryBundle"
       responses:
         200:
           description: Successful response
@@ -182,37 +136,29 @@ paths:
           description: Something went wrong
     post:
       description: |
-        Creates a new 'ApiRecord' enitity for thr thw owning client
+        Creates a new 'Record' enitity for the owning client
       parameters:
         - name: clientId
           in: path
           type: integer
           required: true
           description: The ID of the client
-        - name: x-key
-          in: header
-          description: The encruption key
-          required: true
-          type: string
-        - name: x-key-type
-          in: header
-          description: The encruption key type
-          required: true
-          type: string
-        - name: client
+        - name: data
           in: body
           required: true
           schema:
-            $ref: "#/definitions/ApiRecord"
+            $ref: "#/definitions/RecordBundle"
       responses:
         200:
           description: Successful response
+          schema:
+            $ref: "#/definitions/ApiRecord"
         400:
           description: Something went wrong
-  /clients/{clientId}/ApiRecords/{ApiRecordId}:
+  /clients/{clientId}/records/{recordId}:
     put:
       description: |
-        Updates a  'ApiRecord' entity owned by the client.
+        Updates a  'Record' entity owned by the client.
         Only permitted by the consultant or the client itself
       parameters:
         - name: clientId
@@ -220,26 +166,16 @@ paths:
           type: integer
           required: true
           description: The ID of the client
-        - name: ApiRecordId
+        - name: recordId
           in: path
           type: integer
           required: true
           description: The ID of the client
-        - name: x-key
-          in: header
-          description: The encruption key
-          required: true
-          type: string
-        - name: x-key-type
-          in: header
-          description: The encruption key type
-          required: true
-          type: string
-        - name: client
+        - name: data
           in: body
           required: true
           schema:
-            $ref: "#/definitions/ApiRecord"
+            $ref: "#/definitions/RecordBundle"
       responses:
         200:
           description: Successful response
@@ -247,7 +183,7 @@ paths:
           description: Something went wrong
     delete:
       description: |
-        Deletes a  'ApiRecord' entity owned by the client.
+        Deletes a  'Record' entity owned by the client.
         Only permitted by the consultant or the client itself
       parameters:
         - name: clientId
@@ -255,28 +191,162 @@ paths:
           type: integer
           required: true
           description: The ID of the client
-        - name: ApiRecordId
+        - name: recordId
           in: path
           type: integer
           required: true
           description: The ID of the client
-        - name: x-key
-          in: header
-          description: The encruption key
+        - name: keyring
+          in: body
           required: true
-          type: string
-        - name: x-key-type
-          in: header
-          description: The encruption key type
-          required: true
-          type: string
+          schema:
+            $ref: '#/definitions/Keyring'
       responses:
         200:
           description: Successful response
         400:
           description: Something went wrong
+  /keyring:
+    post:
+      description: |
+        Call master keyring will be encrypted and stored on the server
+      consumes:
+        - application/zip
+      parameters:
+        - name: keyring
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Keyring'
+      responses:
+        200:
+          description: Successful response
+        400:
+          description: Something went wrong
+  /keyring/retrieve/1:
+    get:
+      description: |
+        Call the master keyring retrieval method (step 1)
+      parameters:
+        - name: answer
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/ApiRetrievalAnswer"
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/ApiRetrievalResponse"
+        400:
+          description: Something went wrong
+  /keyring/retrieve/2:
+    get:
+      description: |
+        Call the master keyring retrieval method (step 2)
+      parameters:
+        - name: answer
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/ApiRetrievalResponse"
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/ApiRetrievalAnswer"
+        400:
+          description: Something went wrong
+  /keyring/retrieve/3:
+    get:
+      description: |
+        Call the master keyring retrieval method (step 3)
+      produces:
+        - application/zip
+      parameters:
+        - name: answer
+          in: query
+          required: true
+          type: string
+          description: Answer to the current step
+        - name: previous
+          in: query
+          required: true
+          type: string
+          description: The hashed answer to the previous step
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Keyring'
+        400:
+          description: Something went wrong
 
 definitions:
+  QueryBundle:
+    type: object
+    required:
+      - query
+      - keyring
+    properties:
+      query:
+        type: array
+        items:
+          $ref: "#/definitions/Query"
+      keyring:
+        $ref: '#/definitions/Keyring'
+  ClientBundle:
+    type: object
+    required:
+      - keyring
+      - client
+    properties:
+      client:
+        $ref: '#/definitions/ApiClient'
+      keyring:
+        $ref: '#/definitions/Keyring'
+  RecordBundle:
+    type: object
+    required:
+      - keyring
+      - record
+    properties:
+      record:
+        $ref: '#/definitions/ApiRecord'
+      keyring:
+        $ref: '#/definitions/Keyring'
+  Keyring:
+    type: object
+    required:
+      - keyring
+    properties:
+      keyring:
+        type: string
+        description: The unlocked keyring
+  ApiRetrievalResponse:
+    type: object
+    required:
+      - hash
+    properties:
+      hash:
+        type: string
+        description: The hashed answer to the question if it is correct
+  ApiRetrievalAnswer:
+    type: object
+    required:
+      - step
+      - answer
+      - previous
+    properties:
+      step:
+        type: integer
+        description: The current step in the process (out of 3)
+      answer:
+        type: string
+        description: Answer to the current step
+      previous:
+        type: string
+        description: The hashed answer to the previous step
   Query:
     type: object
     required:
@@ -287,12 +357,14 @@ definitions:
       column:
         type: string
         description: The clumn you want to filter on
+        enum: ['KEY', 'VALUE']
       value:
         type: string
         description: The value you want to compare the entry against, text for key and numeric for value
       operator:
         type: string
         description: The operation to use for comparison
+        enum: ['<', '>=', '=']
   ApiClient:
     type: object
     required:
@@ -312,10 +384,10 @@ definitions:
       email:
         type: string
         description: The email of the client
-      createdAt:
+      created_at:
         type: string
         description: The creation date
-      updatedAt:
+      updated_at:
         type: string
         description: The update date
   ApiRecord:
@@ -329,16 +401,13 @@ definitions:
         description: The id of the client
       name:
         type: string
-        description: The name of the ApiRecord
+        description: The name of the record
       value:
         type: string
-        description: The value of the ApiRecord
-      createdAt:
+        description: The value of the record
+      created_at:
         type: string
         description: The creation date
-      updatedAt:
+      updated_at:
         type: string
         description: The update date
-      client_id:
-        type: integer
-        description: The id of the owning client

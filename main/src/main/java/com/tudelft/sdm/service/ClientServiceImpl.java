@@ -1,8 +1,8 @@
 package com.tudelft.sdm.service;
 
 import com.tudelft.sdm.persistence.Client;
-import com.tudelft.sdm.persistence.enumerations.KeyTypeEnumeration;
 import com.tudelft.sdm.persistence.dao.ClientRepository;
+import io.swagger.model.Keyring;
 import io.swagger.model.ModelApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     @Transactional
-    public Client find(int id, String key, KeyTypeEnumeration keyType) {
+    public Client find(int id, Keyring keyring) {
         Client client = clientDao.findOne((long) id);
         if (client == null) {
             throw new NullPointerException();
@@ -34,7 +34,7 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     @Transactional
-    public Void create(ModelApiClient apiClient, String key, KeyTypeEnumeration keyType) {
+    public Void create(ModelApiClient apiClient, Keyring keyring) {
         Client client = new Client(apiClient);
         client.setCreatedAt(new Date());
         client.setUpdatedAt(new Date());
@@ -44,8 +44,8 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     @Transactional
-    public Void update(int id, ModelApiClient apiClient, String key, KeyTypeEnumeration keyType) {
-        Client client = this.find(id, key, keyType);
+    public Void update(int id, ModelApiClient apiClient, Keyring keyring) {
+        Client client = this.find(id, keyring);
         client.merge(apiClient);
         client.setUpdatedAt(new Date());
         clientDao.save(client);
@@ -54,15 +54,15 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     @Transactional
-    public Void delete(int id, String key, KeyTypeEnumeration keyType) {
-        Client client = this.find(id, key, keyType);
+    public Void delete(int id, Keyring keyring) {
+        Client client = this.find(id, keyring);
         clientDao.delete(client);
         return null;
     }
 
     @Override
     @Transactional
-    public List<Client> getAll(String key, KeyTypeEnumeration keyType) {
+    public List<Client> getAll(Keyring keyring) {
         List<Client> target = new ArrayList<>();
         clientDao.findAll().forEach(target::add);
         return target;
