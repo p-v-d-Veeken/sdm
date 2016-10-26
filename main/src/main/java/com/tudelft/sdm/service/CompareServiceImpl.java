@@ -12,6 +12,7 @@ import java.math.BigInteger;
 @Service(value = "compareService")
 public class CompareServiceImpl implements CompareService
 {
+	@Override
 	public ComparisonResultEnumeration compare(BigInteger a, BigInteger b, PaillierPrivateKey sk)
 	{
 		Comparator      comp = new Comparator(sk);
