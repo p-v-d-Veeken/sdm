@@ -1,6 +1,7 @@
 package com.tudelft.sdm.service;
 
 import com.tudelft.paillier.PaillierPrivateKey;
+import com.tudelft.paillier.PaillierPrivateKeyRing;
 import com.tudelft.sdm.persistence.Client;
 import com.tudelft.sdm.persistence.Record;
 import com.tudelft.sdm.persistence.dao.RecordRepository;
@@ -76,8 +77,10 @@ public class RecordServiceImpl implements RecordService
 	@Override
 	public List<Record> find(int clientId, List<Query> queries, Keyring keyring)
 	{
-		Client             client = clientService.find(clientId, keyring);
-		PaillierPrivateKey sk     = PaillierPrivateKey.create(2048); //TODO: daadwerkelijke sk getten
+		Client                 client      = clientService.find(clientId, keyring);
+		String                 keyRingJson = keyring.getKeyring();
+		PaillierPrivateKeyRing skRing      = new PaillierPrivateKeyRing(keyRingJson, null);
+		PaillierPrivateKey     sk          = skRing.get(clientId);
 		
 		return client.getRecords()
 				.stream()
@@ -127,7 +130,7 @@ public class RecordServiceImpl implements RecordService
 					return IntStream.range(0, queryValues.size())
 							.parallel()
 							.allMatch(j -> CompareService
-									.compare(queryValues.get(j), window.get(j), sk) .equals(ComparisonResult.EQUAL)
+									.compare(queryValues.get(j), window.get(j), sk).equals(ComparisonResult.EQUAL)
 							);
 				});
 	}
