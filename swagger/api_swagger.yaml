@@ -356,7 +356,7 @@ definitions:
     properties:
       column:
         type: string
-        description: The clumn you want to filter on
+        description: The column you want to filter on
         enum: ['KEY', 'VALUE']
       value:
         type: string
@@ -364,7 +364,7 @@ definitions:
       operator:
         type: string
         description: The operation to use for comparison
-        enum: ['<', '>=', '=']
+        enum: ['<', '<=', '=', '>=', '>', 'in']
   ApiClient:
     type: object
     required:

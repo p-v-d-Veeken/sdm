@@ -67,8 +67,8 @@
 
 |Name|Description|Schema|
 |---|---|---|
-|**column**  <br>*required*|The clumn you want to filter on|enum (KEY, VALUE)|
-|**operator**  <br>*required*|The operation to use for comparison|enum (<, >=, =)|
+|**column**  <br>*required*|The column you want to filter on|enum (KEY, VALUE)|
+|**operator**  <br>*required*|The operation to use for comparison|enum (<, <=, =, >=, >, in)|
 |**value**  <br>*required*|The value you want to compare the entry against, text for key and numeric for value|string|
 
 
