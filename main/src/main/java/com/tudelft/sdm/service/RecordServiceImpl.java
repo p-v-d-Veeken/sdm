@@ -4,7 +4,7 @@ import com.tudelft.paillier.PaillierPrivateKey;
 import com.tudelft.sdm.persistence.Client;
 import com.tudelft.sdm.persistence.Record;
 import com.tudelft.sdm.persistence.dao.RecordRepository;
-import com.tudelft.sdm.service.enumerations.ComparisonResultEnumeration;
+import com.tudelft.sdm.service.enumerations.ComparisonResult;
 import io.swagger.model.ApiRecord;
 import io.swagger.model.Keyring;
 import io.swagger.model.Query;
@@ -111,8 +111,8 @@ public class RecordServiceImpl implements RecordService
 			return IntStream.range(0, recordKeys.size())
 					.parallel()
 					.allMatch(i -> CompareService
-							.compare(recordKeys.get(i), queryValues.get(i), sk)
-							.equals(ComparisonResultEnumeration.EQUAL));
+							.compare(recordKeys.get(i), queryValues.get(i), sk).equals(ComparisonResult.EQUAL)
+					);
 		}
 		int windowSize = queryValues.size();
 		
@@ -123,32 +123,33 @@ public class RecordServiceImpl implements RecordService
 				.anyMatch(i ->
 				{
 					List<BigInteger> window = recordKeys.subList(i, windowSize);
+					
 					return IntStream.range(0, queryValues.size())
 							.parallel()
 							.allMatch(j -> CompareService
-									.compare(queryValues.get(j), window.get(j), sk)
-									.equals(ComparisonResultEnumeration.EQUAL));
+									.compare(queryValues.get(j), window.get(j), sk) .equals(ComparisonResult.EQUAL)
+							);
 				});
 	}
 	
 	private boolean evaluateValueQuery(Record record, Query query, PaillierPrivateKey sk)
 	{
-		BigInteger                  recordValue = new BigInteger(Base64.decodeBase64(record.getValue()));
-		BigInteger                  queryValue  = new BigInteger(Base64.decodeBase64(query.getValue()));
-		ComparisonResultEnumeration res         = CompareService.compare(recordValue, queryValue, sk);
+		BigInteger       recordValue = new BigInteger(Base64.decodeBase64(record.getValue()));
+		BigInteger       queryValue  = new BigInteger(Base64.decodeBase64(query.getValue()));
+		ComparisonResult res         = CompareService.compare(recordValue, queryValue, sk);
 		
 		switch (query.getOperator())
 		{
 			case LESS_THAN:
-				return res.equals(ComparisonResultEnumeration.SMALLER);
+				return res.equals(ComparisonResult.SMALLER);
 			case LESS_THAN_OR_EQUAL_TO:
-				return res.equals(ComparisonResultEnumeration.SMALLER) || res.equals(ComparisonResultEnumeration.EQUAL);
+				return res.equals(ComparisonResult.SMALLER) || res.equals(ComparisonResult.EQUAL);
 			case EQUAL:
-				return res.equals(ComparisonResultEnumeration.EQUAL);
+				return res.equals(ComparisonResult.EQUAL);
 			case GREATER_THAN:
-				return res.equals(ComparisonResultEnumeration.GREATER);
+				return res.equals(ComparisonResult.GREATER);
 			case GREATER_THAN_OR_EQUAL_TO:
-				return res.equals(ComparisonResultEnumeration.GREATER) || res.equals(ComparisonResultEnumeration.EQUAL);
+				return res.equals(ComparisonResult.GREATER) || res.equals(ComparisonResult.EQUAL);
 			default:
 				throw new IllegalArgumentException();
 		}

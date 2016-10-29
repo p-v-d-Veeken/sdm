@@ -2,13 +2,13 @@ package com.tudelft.sdm.service.enumerations;
 
 import java.math.BigInteger;
 
-public enum ComparisonResultEnumeration
+public enum ComparisonResult
 {
 	SMALLER,
 	EQUAL,
 	GREATER;
 	
-	public static ComparisonResultEnumeration fromResult(BigInteger res)
+	public static ComparisonResult fromResult(BigInteger res)
 	{
 		switch (res.intValue())
 		{
