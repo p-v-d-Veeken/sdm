@@ -3,8 +3,8 @@ info:
   version: "1.0.1"
   title: Searchable Encrypted Database
   description: |
-    The API for accessing a searchable encrpyted database/ This is part of a project for the Secure Data Management course.
-basePath: '/api/v1'
+    The API for accessing a searchable encrpyted database. This is part of a project for the Secure Data Management course.
+host: 'api.vault.maketek.nl'
 schemes:
   - https
 produces:
