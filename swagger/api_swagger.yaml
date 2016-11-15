@@ -410,15 +410,15 @@ definitions:
   ApiRecord:
     type: object
     required:
-      - name
+      - key
       - value
     properties:
       id:
         type: integer
-        description: The id of the client
-      name:
+        description: The id of the record
+      key:
         type: string
-        description: The name of the record
+        description: The key(s) of the record
       value:
         type: string
         description: The value of the record
