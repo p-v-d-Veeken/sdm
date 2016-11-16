@@ -40,19 +40,19 @@ public class Record implements Serializable {
     public Record() {}
 
     public Record(ApiRecord record) {
-        this.name = record.getName();
+        this.name = record.getKey();
         this.value = record.getValue();
     }
 
     public void merge(ApiRecord record) {
-        this.name = record.getName();
+        this.name = record.getKey();
         this.value = record.getValue();
     }
 
     public ApiRecord cast() {
         ApiRecord record = new ApiRecord();
         record.setId(this.id.intValue());
-        record.setName(this.name);
+        record.setKey(this.name);
         record.setValue(this.value);
         record.setCreatedAt(Application.dateFormat.format(this.createdAt));
         record.setUpdatedAt(Application.dateFormat.format(this.updatedAt));

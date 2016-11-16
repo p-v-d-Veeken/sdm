@@ -7,16 +7,13 @@ import com.tudelft.sdm.persistence.Record;
 import com.tudelft.sdm.persistence.dao.RecordRepository;
 import com.tudelft.sdm.service.enumerations.ComparisonResult;
 import io.swagger.model.ApiRecord;
-import io.swagger.model.Keyring;
+import io.swagger.model.KeyringData;
 import io.swagger.model.Query;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.codec.binary.Base64;
 
 import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -26,30 +23,25 @@ import java.util.stream.IntStream;
 @Service(value = "recordService")
 public class RecordServiceImpl implements RecordService
 {
-	
 	private RecordRepository recordDao;
-	private ClientService    clientService;
+	private ClientService clientService;
 	
 	@Autowired
-	public void setRecordDao(RecordRepository recordDao, ClientService clientService)
-	{
+	public void setRecordDao(RecordRepository recordDao, ClientService clientService) {
 		this.recordDao = recordDao;
 		this.clientService = clientService;
 	}
 	
-	public Record find(int recordId, int clientId, Keyring keyring)
-	{
+	public Record find(int recordId, int clientId, KeyringData keyring) {
 		Record record = recordDao.findByIdAndClientId((long) recordId, (long) clientId);
-		if (record == null)
-		{
+		if (record == null) {
 			throw new NullPointerException();
 		}
 		return record;
 	}
 	
 	@Override
-	public Void create(int clientId, ApiRecord apiRecord, Keyring keyring)
-	{
+	public Void create(int clientId, ApiRecord apiRecord, KeyringData keyring) {
 		Client client = clientService.find(clientId, keyring);
 		Record record = new Record(apiRecord);
 		record.setCreatedAt(new Date());
@@ -60,8 +52,7 @@ public class RecordServiceImpl implements RecordService
 	}
 	
 	@Override
-	public Void update(int recordId, int clientId, ApiRecord apiRecord, Keyring keyring)
-	{
+	public Void update(int recordId, int clientId, ApiRecord apiRecord, KeyringData keyring) {
 		Record record = this.find(recordId, clientId, keyring);
 		record.merge(apiRecord);
 		record.setUpdatedAt(new Date());
@@ -70,15 +61,14 @@ public class RecordServiceImpl implements RecordService
 	}
 	
 	@Override
-	public Void delete(int recordId, int clientId, Keyring keyring)
-	{
+	public Void delete(int recordId, int clientId, KeyringData keyring) {
 		Record record = this.find(recordId, clientId, keyring);
 		recordDao.delete(record);
 		return null;
 	}
 	
 	@Override
-	public List<Record> find(List<Query> queries, Keyring keyring)
+	public List<Record> find(List<Query> queries, KeyringData keyring)
 	{
 		PaillierPrivateKeyRing skRing = new PaillierPrivateKeyRing(keyring.getKeyring(), null);
 		
@@ -88,7 +78,7 @@ public class RecordServiceImpl implements RecordService
 				.map(userId ->
 				{
 					List<Integer> clientIds     = IntStream.of(userId).boxed().collect(Collectors.toList());
-					Keyring       keyRingClient = new Keyring().keyring(skRing.slice(clientIds).toString());
+					KeyringData   keyRingClient = new KeyringData().keyring(skRing.slice(clientIds).toString());
 					
 					return clientService.find(userId, keyRingClient);
 				})

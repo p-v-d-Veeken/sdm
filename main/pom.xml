@@ -23,6 +23,7 @@
                 <version>1.4.1.RELEASE</version>
                 <configuration>
                     <mainClass>com.tudelft.sdm.Application</mainClass>
+                    <executable>true</executable>
                 </configuration>
             </plugin>
         </plugins>
