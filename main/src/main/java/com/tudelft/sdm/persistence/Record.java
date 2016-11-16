@@ -2,6 +2,7 @@ package com.tudelft.sdm.persistence;
 
 import com.tudelft.sdm.Application;
 import io.swagger.model.ApiRecord;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,9 +19,11 @@ public class Record implements Serializable {
     private Long id;
 
     @NotNull
+    @Type(type="text")
     private String name;
 
     @NotNull
+    @Type(type="text")
     private String value;
 
     @JoinColumn(name = "clientId")

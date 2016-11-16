@@ -71,7 +71,7 @@ public class RecordServiceImpl implements RecordService
 	public List<Record> find(List<Query> queries, KeyringData keyring)
 	{
 		PaillierPrivateKeyRing skRing = new PaillierPrivateKeyRing(keyring.getKeyring(), null);
-		
+
 		return skRing.keys()
 				.stream()
 				.parallel()
