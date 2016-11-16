@@ -12,6 +12,6 @@ public interface RecordService {
     Void create(int clientId, ApiRecord apiRecord, Keyring keyring);
     Void update(int recordId, int clientId, ApiRecord apiRecord, Keyring keyring);
     Void delete(int recordId, int clientId, Keyring keyring);
-    List<Record> find(int clientId, List<Query> query, Keyring keyring);
+    List<Record> find(List<Query> query, Keyring keyring);
     //TODO search specifieke methoden hier declareren
 }

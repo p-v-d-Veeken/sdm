@@ -9,11 +9,14 @@ import com.tudelft.sdm.service.enumerations.ComparisonResult;
 import io.swagger.model.ApiRecord;
 import io.swagger.model.Keyring;
 import io.swagger.model.Query;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.codec.binary.Base64;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -75,20 +78,29 @@ public class RecordServiceImpl implements RecordService
 	}
 	
 	@Override
-	public List<Record> find(int clientId, List<Query> queries, Keyring keyring)
+	public List<Record> find(List<Query> queries, Keyring keyring)
 	{
-		Client                 client      = clientService.find(clientId, keyring);
-		String                 keyRingJson = keyring.getKeyring();
-		PaillierPrivateKeyRing skRing      = new PaillierPrivateKeyRing(keyRingJson, null);
-		PaillierPrivateKey     sk          = skRing.get(clientId);
+		PaillierPrivateKeyRing skRing = new PaillierPrivateKeyRing(keyring.getKeyring(), null);
 		
-		return client.getRecords()
+		return skRing.keys()
 				.stream()
 				.parallel()
-				.filter(record -> queries.stream()
+				.map(userId ->
+				{
+					List<Integer> clientIds     = IntStream.of(userId).boxed().collect(Collectors.toList());
+					Keyring       keyRingClient = new Keyring().keyring(skRing.slice(clientIds).toString());
+					
+					return clientService.find(userId, keyRingClient);
+				})
+				.flatMap(client -> client.getRecords()
+						.stream()
 						.parallel()
-						.allMatch(query -> recordMatchesQuery(record, query, sk))
-				).collect(Collectors.toList());
+						.filter(record -> queries.stream()
+								.parallel()
+								.allMatch(query -> recordMatchesQuery(record, query, skRing.get(client.getId().intValue())))
+						)
+				)
+				.collect(Collectors.toList());
 	}
 	
 	private boolean recordMatchesQuery(Record record, Query query, PaillierPrivateKey sk)
