@@ -68,7 +68,7 @@ public class RecordServiceImpl implements RecordService
 	}
 	
 	@Override
-	public List<Record> find(List<Query> queries, KeyringData keyring)
+	public List<ApiRecord> find(List<Query> queries, KeyringData keyring)
 	{
 		PaillierPrivateKeyRing skRing = new PaillierPrivateKeyRing(keyring.getKeyring(), null);
 
@@ -88,7 +88,7 @@ public class RecordServiceImpl implements RecordService
 						.filter(record -> queries.stream()
 								.parallel()
 								.allMatch(query -> recordMatchesQuery(record, query, skRing.get(client.getId().intValue())))
-						)
+						).map(Record::cast)
 				)
 				.collect(Collectors.toList());
 	}

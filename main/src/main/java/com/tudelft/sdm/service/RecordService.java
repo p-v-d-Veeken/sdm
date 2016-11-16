@@ -1,6 +1,5 @@
 package com.tudelft.sdm.service;
 
-import com.tudelft.sdm.persistence.Record;
 import io.swagger.model.ApiRecord;
 import io.swagger.model.KeyringData;
 import io.swagger.model.Query;
@@ -12,6 +11,6 @@ public interface RecordService {
     Void create(int clientId, ApiRecord apiRecord, KeyringData keyring);
     Void update(int recordId, int clientId, ApiRecord apiRecord, KeyringData keyring);
     Void delete(int recordId, int clientId, KeyringData keyring);
-    List<Record> find(List<Query> query, KeyringData keyring);
+    List<ApiRecord> find(List<Query> query, KeyringData keyring);
     //TODO search specifieke methoden hier declareren
 }
