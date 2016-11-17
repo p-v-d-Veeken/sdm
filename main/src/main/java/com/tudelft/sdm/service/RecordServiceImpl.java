@@ -24,24 +24,28 @@ import java.util.stream.IntStream;
 public class RecordServiceImpl implements RecordService
 {
 	private RecordRepository recordDao;
-	private ClientService clientService;
+	private ClientService    clientService;
 	
 	@Autowired
-	public void setRecordDao(RecordRepository recordDao, ClientService clientService) {
+	public void setRecordDao(RecordRepository recordDao, ClientService clientService)
+	{
 		this.recordDao = recordDao;
 		this.clientService = clientService;
 	}
 	
-	public Record find(int recordId, int clientId, KeyringData keyring) {
+	public Record find(int recordId, int clientId, KeyringData keyring)
+	{
 		Record record = recordDao.findByIdAndClientId((long) recordId, (long) clientId);
-		if (record == null) {
+		if (record == null)
+		{
 			throw new NullPointerException();
 		}
 		return record;
 	}
 	
 	@Override
-	public Void create(int clientId, ApiRecord apiRecord, KeyringData keyring) {
+	public Void create(int clientId, ApiRecord apiRecord, KeyringData keyring)
+	{
 		Client client = clientService.find(clientId, keyring);
 		Record record = new Record(apiRecord);
 		record.setCreatedAt(new Date());
@@ -52,7 +56,8 @@ public class RecordServiceImpl implements RecordService
 	}
 	
 	@Override
-	public Void update(int recordId, int clientId, ApiRecord apiRecord, KeyringData keyring) {
+	public Void update(int recordId, int clientId, ApiRecord apiRecord, KeyringData keyring)
+	{
 		Record record = this.find(recordId, clientId, keyring);
 		record.merge(apiRecord);
 		record.setUpdatedAt(new Date());
@@ -61,7 +66,8 @@ public class RecordServiceImpl implements RecordService
 	}
 	
 	@Override
-	public Void delete(int recordId, int clientId, KeyringData keyring) {
+	public Void delete(int recordId, int clientId, KeyringData keyring)
+	{
 		Record record = this.find(recordId, clientId, keyring);
 		recordDao.delete(record);
 		return null;
@@ -71,7 +77,7 @@ public class RecordServiceImpl implements RecordService
 	public List<ApiRecord> find(List<Query> queries, KeyringData keyring)
 	{
 		PaillierPrivateKeyRing skRing = new PaillierPrivateKeyRing(keyring.getKeyring(), null);
-
+		
 		return skRing.keys()
 				.stream()
 				.parallel()
@@ -127,7 +133,9 @@ public class RecordServiceImpl implements RecordService
 				.parallel()
 				.anyMatch(i ->
 				{
-					List<BigInteger> window = recordKeys.subList(i, windowSize);
+					if (i + windowSize > recordKeys.size()) { return false; }
+					
+					List<BigInteger> window = recordKeys.subList(i, i + windowSize);
 					
 					return IntStream.range(0, queryValues.size())
 							.parallel()
