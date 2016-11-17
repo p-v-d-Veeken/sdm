@@ -3,7 +3,7 @@
 
 <a name="overview"></a>
 ## Overview
-The API for accessing a searchable encrpyted database/ This is part of a project for the Secure Data Management course.
+The API for accessing a searchable encrpyted database. This is part of a project for the Secure Data Management course.
 
 
 ### Version information
@@ -11,6 +11,7 @@ The API for accessing a searchable encrpyted database/ This is part of a project
 
 
 ### URI scheme
+*Host* : api.vault.maketek.nl  
 *Schemes* : HTTPS
 
 

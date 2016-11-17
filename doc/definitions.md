@@ -21,8 +21,8 @@
 |Name|Description|Schema|
 |---|---|---|
 |**created_at**  <br>*optional*|The creation date|string|
-|**id**  <br>*optional*|The id of the client|integer|
-|**name**  <br>*required*|The name of the record|string|
+|**id**  <br>*optional*|The id of the record|integer|
+|**key**  <br>*required*|The key(s) of the record|string|
 |**updated_at**  <br>*optional*|The update date|string|
 |**value**  <br>*required*|The value of the record|string|
 
@@ -51,11 +51,11 @@
 |Name|Description|Schema|
 |---|---|---|
 |**client**  <br>*required*||[ApiClient](#apiclient)|
-|**keyring**  <br>*required*||[Keyring](#keyring)|
+|**keyringData**  <br>*required*||[KeyringData](#keyringdata)|
 
 
-<a name="keyring"></a>
-### Keyring
+<a name="keyringdata"></a>
+### KeyringData
 
 |Name|Description|Schema|
 |---|---|---|
@@ -77,7 +77,7 @@
 
 |Name|Description|Schema|
 |---|---|---|
-|**keyring**  <br>*required*||[Keyring](#keyring)|
+|**keyringData**  <br>*required*||[KeyringData](#keyringdata)|
 |**query**  <br>*required*||< [Query](#query) > array|
 
 
@@ -86,7 +86,7 @@
 
 |Name|Description|Schema|
 |---|---|---|
-|**keyring**  <br>*required*||[Keyring](#keyring)|
+|**keyringData**  <br>*required*||[KeyringData](#keyringdata)|
 |**record**  <br>*required*||[ApiRecord](#apirecord)|
 
 

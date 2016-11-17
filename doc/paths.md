@@ -2,8 +2,31 @@
 <a name="paths"></a>
 ## Paths
 
-<a name="clients-post"></a>
-### POST /clients
+<a name="clients-get-post"></a>
+### POST /clients/get
+
+#### Description
+Retrieves an array of all 'Client' entities.
+Only permitted by the consultant
+
+
+#### Parameters
+
+|Type|Name|Description|Schema|Default|
+|---|---|---|---|---|
+|**Body**|**keyringData**  <br>*required*||[KeyringData](#keyringdata)||
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Successful response|< [ApiClient](#apiclient) > array|
+|**400**|Something went wrong|No Content|
+
+
+<a name="clients-post-post"></a>
+### POST /clients/post
 
 #### Description
 Creates a new 'Client' enitity
@@ -24,31 +47,32 @@ Creates a new 'Client' enitity
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-get"></a>
-### GET /clients
+<a name="clients-clientid-delete-post"></a>
+### POST /clients/{clientId}/delete
 
 #### Description
-Retrieves an array of all 'Client' entities.
-Only permitted by the consultant
+Deletes a  'Client' entity.
+Only permitted by the consultant or the client itself
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Body**|**keyring**  <br>*required*||[Keyring](#keyring)||
+|**Path**|**clientId**  <br>*required*|The ID of the client|integer||
+|**Body**|**keyringData**  <br>*required*||[KeyringData](#keyringdata)||
 
 
 #### Responses
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Successful response|< [ApiClient](#apiclient) > array|
+|**200**|Successful response|No Content|
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-get"></a>
-### GET /clients/{clientId}
+<a name="clients-clientid-get-post"></a>
+### POST /clients/{clientId}/get
 
 #### Description
 Retrieves a  'Client' entity.
@@ -60,7 +84,7 @@ Only permitted by the consultant or the client itself
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Body**|**keyring**  <br>*required*||[Keyring](#keyring)||
+|**Body**|**keyringData**  <br>*required*||[KeyringData](#keyringdata)||
 
 
 #### Responses
@@ -71,8 +95,8 @@ Only permitted by the consultant or the client itself
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-put"></a>
-### PUT /clients/{clientId}
+<a name="clients-clientid-put-post"></a>
+### POST /clients/{clientId}/put
 
 #### Description
 Updates a  'Client' entity.
@@ -95,55 +119,8 @@ Only permitted by the consultant or the client itself
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-delete"></a>
-### DELETE /clients/{clientId}
-
-#### Description
-Deletes a  'Client' entity.
-Only permitted by the consultant or the client itself
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Body**|**keyring**  <br>*required*||[Keyring](#keyring)||
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Successful response|No Content|
-|**400**|Something went wrong|No Content|
-
-
-<a name="clients-clientid-records-post"></a>
-### POST /clients/{clientId}/records
-
-#### Description
-Creates a new 'Record' enitity for the owning client
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Body**|**data**  <br>*required*||[RecordBundle](#recordbundle)||
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Successful response|[ApiRecord](#apirecord)|
-|**400**|Something went wrong|No Content|
-
-
-<a name="clients-clientid-records-get"></a>
-### GET /clients/{clientId}/records
+<a name="clients-clientid-records-get-post"></a>
+### POST /clients/{clientId}/records/get
 
 #### Description
 Retrieves an array of all 'Record' entities owned by the client indicated with the clientId.
@@ -166,8 +143,56 @@ Only permitted by the consultant
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-records-recordid-put"></a>
-### PUT /clients/{clientId}/records/{recordId}
+<a name="clients-clientid-records-post-post"></a>
+### POST /clients/{clientId}/records/post
+
+#### Description
+Creates a new 'Record' enitity for the owning client
+
+
+#### Parameters
+
+|Type|Name|Description|Schema|Default|
+|---|---|---|---|---|
+|**Path**|**clientId**  <br>*required*|The ID of the client|integer||
+|**Body**|**data**  <br>*required*||[RecordBundle](#recordbundle)||
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Successful response|[ApiRecord](#apirecord)|
+|**400**|Something went wrong|No Content|
+
+
+<a name="clients-clientid-records-recordid-delete-post"></a>
+### POST /clients/{clientId}/records/{recordId}/delete
+
+#### Description
+Deletes a  'Record' entity owned by the client.
+Only permitted by the consultant or the client itself
+
+
+#### Parameters
+
+|Type|Name|Description|Schema|Default|
+|---|---|---|---|---|
+|**Path**|**clientId**  <br>*required*|The ID of the client|integer||
+|**Path**|**recordId**  <br>*required*|The ID of the client|integer||
+|**Body**|**keyringData**  <br>*required*||[KeyringData](#keyringdata)||
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Successful response|No Content|
+|**400**|Something went wrong|No Content|
+
+
+<a name="clients-clientid-records-recordid-put-post"></a>
+### POST /clients/{clientId}/records/{recordId}/put
 
 #### Description
 Updates a  'Record' entity owned by the client.
@@ -191,33 +216,8 @@ Only permitted by the consultant or the client itself
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-records-recordid-delete"></a>
-### DELETE /clients/{clientId}/records/{recordId}
-
-#### Description
-Deletes a  'Record' entity owned by the client.
-Only permitted by the consultant or the client itself
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Path**|**recordId**  <br>*required*|The ID of the client|integer||
-|**Body**|**keyring**  <br>*required*||[Keyring](#keyring)||
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Successful response|No Content|
-|**400**|Something went wrong|No Content|
-
-
-<a name="keyring-post"></a>
-### POST /keyring
+<a name="keyring-post-post"></a>
+### POST /keyring/post
 
 #### Description
 Call master keyring will be encrypted and stored on the server
@@ -227,7 +227,7 @@ Call master keyring will be encrypted and stored on the server
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Body**|**keyring**  <br>*required*||[Keyring](#keyring)||
+|**Body**|**keyringData**  <br>*required*||[KeyringData](#keyringdata)||
 
 
 #### Responses
@@ -243,8 +243,8 @@ Call master keyring will be encrypted and stored on the server
 * `application/zip`
 
 
-<a name="keyring-retrieve-1-get"></a>
-### GET /keyring/retrieve/1
+<a name="keyring-retrieve-1-get-post"></a>
+### POST /keyring/retrieve/1/get
 
 #### Description
 Call the master keyring retrieval method (step 1)
@@ -265,8 +265,8 @@ Call the master keyring retrieval method (step 1)
 |**400**|Something went wrong|No Content|
 
 
-<a name="keyring-retrieve-2-get"></a>
-### GET /keyring/retrieve/2
+<a name="keyring-retrieve-2-get-post"></a>
+### POST /keyring/retrieve/2/get
 
 #### Description
 Call the master keyring retrieval method (step 2)
@@ -287,8 +287,8 @@ Call the master keyring retrieval method (step 2)
 |**400**|Something went wrong|No Content|
 
 
-<a name="keyring-retrieve-3-get"></a>
-### GET /keyring/retrieve/3
+<a name="keyring-retrieve-3-get-post"></a>
+### POST /keyring/retrieve/3/get
 
 #### Description
 Call the master keyring retrieval method (step 3)
@@ -306,7 +306,7 @@ Call the master keyring retrieval method (step 3)
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Successful response|[Keyring](#keyring)|
+|**200**|Successful response|[KeyringData](#keyringdata)|
 |**400**|Something went wrong|No Content|
 
 
