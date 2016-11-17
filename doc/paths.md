@@ -2,32 +2,8 @@
 <a name="paths"></a>
 ## Paths
 
-<a name="clients-post"></a>
-### POST /clients
-
-#### Description
-Creates a new 'Client' enitity
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
-|**Body**|**client**  <br>*required*||[ApiClient](#apiclient)||
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Successful response|[ApiClient](#apiclient)|
-|**400**|Something went wrong|No Content|
-
-
-<a name="clients-get"></a>
-### GET /clients
+<a name="clients-get-post"></a>
+### POST /clients/get
 
 #### Description
 Retrieves an array of all 'Client' entities.
@@ -38,8 +14,7 @@ Only permitted by the consultant
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
+|**Body**|**keyringData**  <br>*required*||[KeyringData](#keyringdata)||
 
 
 #### Responses
@@ -50,59 +25,30 @@ Only permitted by the consultant
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-get"></a>
-### GET /clients/{clientId}
+<a name="clients-post-post"></a>
+### POST /clients/post
 
 #### Description
-Retrieves a  'Client' entity.
-Only permitted by the consultant or the client itself
+Creates a new 'Client' enitity
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
-|**Path**|**clientId**  <br>*required*|The ID of the client|integer||
+|**Body**|**data**  <br>*required*||[ClientBundle](#clientbundle)||
 
 
 #### Responses
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Successful response|[ApiClient](#apiclient)|
+|**200**|Successful response|[ClientBundle](#clientbundle)|
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-put"></a>
-### PUT /clients/{clientId}
-
-#### Description
-Updates a  'Client' entity.
-Only permitted by the consultant or the client itself
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
-|**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Body**|**client**  <br>*required*||[ApiClient](#apiclient)||
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Successful response|No Content|
-|**400**|Something went wrong|No Content|
-
-
-<a name="clients-clientid-delete"></a>
-### DELETE /clients/{clientId}
+<a name="clients-clientid-delete-post"></a>
+### POST /clients/{clientId}/delete
 
 #### Description
 Deletes a  'Client' entity.
@@ -113,9 +59,8 @@ Only permitted by the consultant or the client itself
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
+|**Body**|**keyringData**  <br>*required*||[KeyringData](#keyringdata)||
 
 
 #### Responses
@@ -126,33 +71,56 @@ Only permitted by the consultant or the client itself
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-records-post"></a>
-### POST /clients/{clientId}/records
+<a name="clients-clientid-get-post"></a>
+### POST /clients/{clientId}/get
 
 #### Description
-Creates a new 'Record' enitity for the owning client
+Retrieves a  'Client' entity.
+Only permitted by the consultant or the client itself
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Body**|**record**  <br>*required*||[ApiRecord](#apirecord)||
+|**Body**|**keyringData**  <br>*required*||[KeyringData](#keyringdata)||
 
 
 #### Responses
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Successful response|[ApiRecord](#apirecord)|
+|**200**|Successful response|[ApiClient](#apiclient)|
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-records-get"></a>
-### GET /clients/{clientId}/records
+<a name="clients-clientid-put-post"></a>
+### POST /clients/{clientId}/put
+
+#### Description
+Updates a  'Client' entity.
+Only permitted by the consultant or the client itself
+
+
+#### Parameters
+
+|Type|Name|Description|Schema|Default|
+|---|---|---|---|---|
+|**Path**|**clientId**  <br>*required*|The ID of the client|integer||
+|**Body**|**data**  <br>*required*||[ClientBundle](#clientbundle)||
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Successful response|No Content|
+|**400**|Something went wrong|No Content|
+
+
+<a name="clients-clientid-records-get-post"></a>
+### POST /clients/{clientId}/records/get
 
 #### Description
 Retrieves an array of all 'Record' entities owned by the client indicated with the clientId.
@@ -163,9 +131,8 @@ Only permitted by the consultant
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
+|**Body**|**data**  <br>*required*||[QueryBundle](#querybundle)||
 
 
 #### Responses
@@ -176,22 +143,19 @@ Only permitted by the consultant
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-records-recordid-get"></a>
-### GET /clients/{clientId}/records/{recordId}
+<a name="clients-clientid-records-post-post"></a>
+### POST /clients/{clientId}/records/post
 
 #### Description
-Retrieves a  'Record' entity owned by the client.
-Only permitted by the consultant or the client itself
+Creates a new 'Record' enitity for the owning client
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Path**|**recordId**  <br>*required*|The ID of the client|integer||
+|**Body**|**data**  <br>*required*||[RecordBundle](#recordbundle)||
 
 
 #### Responses
@@ -202,35 +166,8 @@ Only permitted by the consultant or the client itself
 |**400**|Something went wrong|No Content|
 
 
-<a name="clients-clientid-records-recordid-put"></a>
-### PUT /clients/{clientId}/records/{recordId}
-
-#### Description
-Updates a  'Record' entity owned by the client.
-Only permitted by the consultant or the client itself
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
-|**Path**|**clientId**  <br>*required*|The ID of the client|integer||
-|**Path**|**recordId**  <br>*required*|The ID of the client|integer||
-|**Body**|**record**  <br>*required*||[ApiRecord](#apirecord)||
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Successful response|No Content|
-|**400**|Something went wrong|No Content|
-
-
-<a name="clients-clientid-records-recordid-delete"></a>
-### DELETE /clients/{clientId}/records/{recordId}
+<a name="clients-clientid-records-recordid-delete-post"></a>
+### POST /clients/{clientId}/records/{recordId}/delete
 
 #### Description
 Deletes a  'Record' entity owned by the client.
@@ -241,10 +178,9 @@ Only permitted by the consultant or the client itself
 
 |Type|Name|Description|Schema|Default|
 |---|---|---|---|---|
-|**Header**|**x-key**  <br>*required*|The encruption key|string||
-|**Header**|**x-key-type**  <br>*required*|The encryption key type|string||
 |**Path**|**clientId**  <br>*required*|The ID of the client|integer||
 |**Path**|**recordId**  <br>*required*|The ID of the client|integer||
+|**Body**|**keyringData**  <br>*required*||[KeyringData](#keyringdata)||
 
 
 #### Responses
@@ -253,6 +189,130 @@ Only permitted by the consultant or the client itself
 |---|---|---|
 |**200**|Successful response|No Content|
 |**400**|Something went wrong|No Content|
+
+
+<a name="clients-clientid-records-recordid-put-post"></a>
+### POST /clients/{clientId}/records/{recordId}/put
+
+#### Description
+Updates a  'Record' entity owned by the client.
+Only permitted by the consultant or the client itself
+
+
+#### Parameters
+
+|Type|Name|Description|Schema|Default|
+|---|---|---|---|---|
+|**Path**|**clientId**  <br>*required*|The ID of the client|integer||
+|**Path**|**recordId**  <br>*required*|The ID of the client|integer||
+|**Body**|**data**  <br>*required*||[RecordBundle](#recordbundle)||
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Successful response|No Content|
+|**400**|Something went wrong|No Content|
+
+
+<a name="keyring-post-post"></a>
+### POST /keyring/post
+
+#### Description
+Call master keyring will be encrypted and stored on the server
+
+
+#### Parameters
+
+|Type|Name|Description|Schema|Default|
+|---|---|---|---|---|
+|**Body**|**keyringData**  <br>*required*||[KeyringData](#keyringdata)||
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Successful response|No Content|
+|**400**|Something went wrong|No Content|
+
+
+#### Consumes
+
+* `application/zip`
+
+
+<a name="keyring-retrieve-1-get-post"></a>
+### POST /keyring/retrieve/1/get
+
+#### Description
+Call the master keyring retrieval method (step 1)
+
+
+#### Parameters
+
+|Type|Name|Description|Schema|Default|
+|---|---|---|---|---|
+|**Body**|**answer**  <br>*required*||[ApiRetrievalAnswer](#apiretrievalanswer)||
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Successful response|[ApiRetrievalResponse](#apiretrievalresponse)|
+|**400**|Something went wrong|No Content|
+
+
+<a name="keyring-retrieve-2-get-post"></a>
+### POST /keyring/retrieve/2/get
+
+#### Description
+Call the master keyring retrieval method (step 2)
+
+
+#### Parameters
+
+|Type|Name|Description|Schema|Default|
+|---|---|---|---|---|
+|**Body**|**answer**  <br>*required*||[ApiRetrievalResponse](#apiretrievalresponse)||
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Successful response|[ApiRetrievalAnswer](#apiretrievalanswer)|
+|**400**|Something went wrong|No Content|
+
+
+<a name="keyring-retrieve-3-get-post"></a>
+### POST /keyring/retrieve/3/get
+
+#### Description
+Call the master keyring retrieval method (step 3)
+
+
+#### Parameters
+
+|Type|Name|Description|Schema|Default|
+|---|---|---|---|---|
+|**Query**|**answer**  <br>*required*|Answer to the current step|string||
+|**Query**|**previous**  <br>*required*|The hashed answer to the previous step|string||
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Successful response|[KeyringData](#keyringdata)|
+|**400**|Something went wrong|No Content|
+
+
+#### Produces
+
+* `application/zip`
 
 
 
