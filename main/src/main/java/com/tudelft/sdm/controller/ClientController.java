@@ -47,7 +47,7 @@ public class ClientController extends ExceptionController implements ClientsApi 
     
     @Override
     public ResponseEntity<List<ApiRecord>> clientsClientIdRecordsGetPost(@ApiParam(value = "The ID of the client", required = true) @PathVariable("clientId") Integer clientId, @ApiParam(value = "", required = true) @RequestBody QueryBundle data) {
-        return handleExceptions(() -> recordService.find(data.getQuery(), data.getKeyringData()));
+        return handleExceptions(() -> recordService.find(clientId, data.getQuery(), data.getKeyringData()));
     }
     
     @Override

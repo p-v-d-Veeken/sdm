@@ -15,9 +15,11 @@ public class ExceptionController {
             return ResponseEntity.ok(proc.func());
         } catch (NullPointerException e) {
             log.error(e.getLocalizedMessage());
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             log.error(e.getLocalizedMessage());
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

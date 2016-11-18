@@ -74,28 +74,16 @@ public class RecordServiceImpl implements RecordService
 	}
 	
 	@Override
-	public List<ApiRecord> find(List<Query> queries, KeyringData keyring)
+	public List<ApiRecord> find(int clientId, List<Query> queries, KeyringData keyring)
 	{
 		PaillierPrivateKeyRing skRing = new PaillierPrivateKeyRing(keyring.getKeyring(), null);
 		
-		return skRing.keys()
-				.stream()
-				.parallel()
-				.map(userId ->
-				{
-					List<Integer> clientIds     = IntStream.of(userId).boxed().collect(Collectors.toList());
-					KeyringData   keyRingClient = new KeyringData().keyring(skRing.slice(clientIds).toString());
-					
-					return clientService.find(userId, keyRingClient);
-				})
-				.flatMap(client -> client.getRecords()
-						.stream()
-						.parallel()
-						.filter(record -> queries.stream()
-								.parallel()
-								.allMatch(query -> recordMatchesQuery(record, query, skRing.get(client.getId().intValue())))
-						).map(Record::cast)
+		return clientService.find(clientId, new KeyringData().keyring(skRing.get(clientId).toString())).getRecords()
+				.parallelStream()
+				.filter(record -> queries.parallelStream()
+						.allMatch(query -> recordMatchesQuery(record, query, skRing.get(clientId)))
 				)
+				.map(Record::cast)
 				.collect(Collectors.toList());
 	}
 	
